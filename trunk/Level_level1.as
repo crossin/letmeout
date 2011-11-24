@@ -6,42 +6,47 @@ package
 	public class Level_level1 extends BaseLevel
 	{
 		//Embedded media...
-		[Embed(source="data/mapCSV_Group1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Group1Map1:Class;
-		[Embed(source="../../Mario/src/data/tiles.png")] public var Img_Group1Map1:Class;
+		[Embed(source="data/mapCSV_Wall_Map1.csv", mimeType="application/octet-stream")] public var CSV_WallMap1:Class;
+		[Embed(source="data/tiles.png")] public var Img_WallMap1:Class;
 
 		//Tilemaps
-		public var layerGroup1Map1:FlxTilemap;
+		public var layerWallMap1:FlxTilemap;
 
 		//Sprites
-		public var Group2Layer1Group:FlxGroup = new FlxGroup;
+		public var BoxLayer1Group:FlxGroup = new FlxGroup;
+		public var PlayerLayer1Group:FlxGroup = new FlxGroup;
 
 
 		public function Level_level1(addToStage:Boolean = true, onAddSpritesCallback:Function = null)
 		{
 			// Generate maps.
-			layerGroup1Map1 = new FlxTilemap;
-			layerGroup1Map1.loadMap( new CSV_Group1Map1, Img_Group1Map1, 16,16 );
-			layerGroup1Map1.x = 0.000000;
-			layerGroup1Map1.y = 0.000000;
-			layerGroup1Map1.scrollFactor.x = 1.000000;
-			layerGroup1Map1.scrollFactor.y = 1.000000;
-			layerGroup1Map1.collideIndex = 1;
-			layerGroup1Map1.drawIndex = 1;
+			layerWallMap1 = new FlxTilemap;
+			layerWallMap1.loadMap( new CSV_WallMap1, Img_WallMap1, 16,16 );
+			layerWallMap1.x = 0.000000;
+			layerWallMap1.y = 0.000000;
+			layerWallMap1.scrollFactor.x = 1.000000;
+			layerWallMap1.scrollFactor.y = 1.000000;
+			layerWallMap1.collideIndex = 1;
+			layerWallMap1.drawIndex = 1;
 
 			//Add layers to the master group in correct order.
-			masterLayer.add(layerGroup1Map1);
-			masterLayer.add(Group2Layer1Group);
-			Group2Layer1Group.scrollFactor.x = 1.000000;
-			Group2Layer1Group.scrollFactor.y = 1.000000;
+			masterLayer.add(layerWallMap1);
+			masterLayer.add(BoxLayer1Group);
+			BoxLayer1Group.scrollFactor.x = 1.000000;
+			BoxLayer1Group.scrollFactor.y = 1.000000;
+			masterLayer.add(PlayerLayer1Group);
+			PlayerLayer1Group.scrollFactor.x = 1.000000;
+			PlayerLayer1Group.scrollFactor.y = 1.000000;
 
 
 			if ( addToStage )
 			{
-				addSpritesForLayerGroup2Layer1(onAddSpritesCallback);
+				addSpritesForLayerBoxLayer1(onAddSpritesCallback);
+				addSpritesForLayerPlayerLayer1(onAddSpritesCallback);
 				FlxG.state.add(masterLayer);
 			}
 
-			mainLayer = layerGroup1Map1;
+			mainLayer = layerWallMap1;
 
 			boundsMinX = 0;
 			boundsMinY = 0;
@@ -50,9 +55,22 @@ package
 
 		}
 
-		override public function addSpritesForLayerGroup2Layer1(onAddCallback:Function = null):void
+		override public function addSpritesForLayerBoxLayer1(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(Player, Group2Layer1Group , 162.000, 462.000, 0.000, false, onAddCallback );//"player"
+			addSpriteToLayer(Crate, BoxLayer1Group , 101.000, 585.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 267.000, 597.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 386.000, 598.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 525.000, 591.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 175.000, 582.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 176.000, 570.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 175.000, 558.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 221.000, 564.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Crate, BoxLayer1Group , 280.000, 547.000, 0.000, false, onAddCallback );//"Box"
+		}
+
+		override public function addSpritesForLayerPlayerLayer1(onAddCallback:Function = null):void
+		{
+			addSpriteToLayer(Player, PlayerLayer1Group , 167.000, 471.000, 0.000, false, onAddCallback );//"player"
 		}
 
 
