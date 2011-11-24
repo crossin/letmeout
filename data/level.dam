@@ -2,14 +2,15 @@
 <project>
   <version>2.1.1</version>
   <bgColor>0x000000</bgColor>
-  <viewPos x="0" y="-49"/>
+  <viewPos x="-136" y="-318"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="2">
-    <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+  <spriteEntries currentId="3">
+    <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="Box" idx="2" className="Crate" image="crate.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="true" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
   </spriteEntries>
   <layers>
-    <group name="Group1" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <maplayer name="Map1" xScroll="1" yScroll="1" x="0" y="0" width="40" height="40" tileset="../../../Mario/src/data/tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+    <group name="Wall" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <maplayer name="Map1" xScroll="1" yScroll="1" x="0" y="0" width="40" height="40" tileset="tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -44,10 +45,10 @@
         <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
         <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
         <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
-        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
-        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
-        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
-        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
+        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1</row>
+        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
+        <row>1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
+        <row>1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1</row>
         <row>1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1</row>
         <row>1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</row>
         <tileProperties>
@@ -55,9 +56,17 @@
         </tileProperties>
       </maplayer>
     </group>
-    <group name="Group2" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+    <group name="Box" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
-        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="162" y="462" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
+        <sprite guid="183ADFEF-1FAB-1B7E-7D4A-0C09CE667F09" x="101" y="585" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="90CA73FA-BA07-7BA8-4F66-D96CBAF88248" x="386" y="598" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="4640CC24-B69D-A7D9-1292-9C9A567B85E9" x="525" y="591" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+      </spritelayer>
+    </group>
+    <group name="Player" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="167" y="471" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
     </group>
   </layers>
@@ -188,7 +197,7 @@
     <setting name="TileMapClass">FlxTilemap</setting>
     <setting name="FlixelPackage">org.flixel</setting>
     <setting name="GamePackage"/>
-    <setting name="MainLayer">Group1Map1</setting>
+    <setting name="MainLayer">WallMap1</setting>
     <setting name="LevelName">level1</setting>
     <setting name="BaseClass">BaseLevel</setting>
     <setting name="FlixelVersion">2.43</setting>

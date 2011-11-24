@@ -13,14 +13,15 @@ package {
 
 		protected var _fps:FlxText;
 
-		protected var _player:FlxSprite;
+		public var player:Player;
 		protected var _elevator:FlxSprite;
+		protected var boxes:FlxGroup;
 
 		protected var level1:BaseLevel;
 
 		override public function create():void {
 			level1 = new Level_level1(true, onSpriteAddedCallback);
-			FlxG.follow(_player, 100);
+			FlxG.follow(player, 10);
 			FlxG.followBounds(0, 0, 640, 640);
 		/*
 		   //Background
@@ -74,24 +75,56 @@ package {
 		   tx.shadow = 0x233e58;
 		   add(tx);
 		 */
-		   
+
 		}
 
 		override public function update():void {
 			//_fps.text = FlxU.floor(1/FlxG.elapsed)+" fps";
 			super.update();
-			//collide();
-			level1.mainLayer.collide(_player); 
+			collide();
+
+			//FlxU.overlap(boxes, player, touchBox);
+			if (FlxG.keys.justPressed("SPACE")){
+				carryBox();
+			}
+
+			//level1.mainLayer.collide(player);
+			//level1.mainLayer.collide(boxes);
 			//if(FlxG.keys.justReleased("ENTER"))
 			//FlxG.state = new PlayState2();
 		}
 
-		protected function onSpriteAddedCallback(sprite:FlxSprite, group:FlxGroup):void
-		{
-			if (sprite is Player)
-			{
-				_player = sprite as Player;
+		protected function onSpriteAddedCallback(sprite:FlxSprite, group:FlxGroup):void {
+			if (sprite is Player){
+				player = sprite as Player;
+			}
+
+			if (sprite is Crate){
+				boxes = group as FlxGroup;
 			}
 		}
+
+		public function carryBox():void {
+			if (player.box != null){
+				player.drop();
+			} else {
+				for each (var box:Crate in boxes.members){
+					//if (box.x - player.x < 1 && player.x - box.x < 1){
+					//box.kill();
+					//}
+
+					var deltaX:Number = FlxU.abs((box.x + box.width / 2) - (player.x + player.width / 2));
+					var deltaY:Number = FlxU.abs((box.y + box.height / 2) - (player.y + player.height / 2));
+					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - box.height) / 2 + 5)){
+						//box.isCarried = true;
+						player.carry(box);
+						break;
+							//box.drag.x = 0;
+							//box.acceleration.y = 0;
+					}
+				}
+			}
+		}
+
 	}
 }
