@@ -2,7 +2,7 @@
 <project>
   <version>2.1.1</version>
   <bgColor>0x000000</bgColor>
-  <viewPos x="-136" y="-318"/>
+  <viewPos x="6.6841588861700245" y="-520.3125"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="3">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -62,6 +62,11 @@
         <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="90CA73FA-BA07-7BA8-4F66-D96CBAF88248" x="386" y="598" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="4640CC24-B69D-A7D9-1292-9C9A567B85E9" x="525" y="591" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="3AC402FD-0418-0BDC-3B69-8433C9D7BBD5" x="175" y="582" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="8329150D-7998-52DC-A587-1FF76CAD2A7A" x="176" y="570" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="6D8A27CE-0217-06DA-A1A1-49C79A9FD7BB" x="175" y="558" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="32B76C58-8CC7-DA30-85C4-DBD01E4A8FF0" x="221" y="564" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="B5F45260-3023-56AD-C14F-5C90FBA1E6B8" x="280" y="547" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
       </spritelayer>
     </group>
     <group name="Player" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">

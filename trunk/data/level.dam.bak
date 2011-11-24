@@ -59,7 +59,7 @@
     <group name="Box" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="183ADFEF-1FAB-1B7E-7D4A-0C09CE667F09" x="101" y="585" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
-        <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="2.22" scaleY="2.22" flipped="false" idx="2"/>
+        <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="90CA73FA-BA07-7BA8-4F66-D96CBAF88248" x="386" y="598" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="4640CC24-B69D-A7D9-1292-9C9A567B85E9" x="525" y="591" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
       </spritelayer>
