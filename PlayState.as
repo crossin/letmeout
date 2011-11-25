@@ -92,6 +92,7 @@ package {
 			//level1.mainLayer.collide(boxes);
 			//if(FlxG.keys.justReleased("ENTER"))
 			//FlxG.state = new PlayState2();
+
 		}
 
 		protected function onSpriteAddedCallback(sprite:FlxSprite, group:FlxGroup):void {
@@ -115,10 +116,12 @@ package {
 
 					var deltaX:Number = FlxU.abs((box.x + box.width / 2) - (player.x + player.width / 2));
 					var deltaY:Number = FlxU.abs((box.y + box.height / 2) - (player.y + player.height / 2));
-					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - box.height) / 2 + 5)){
+					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= (player.height + box.height) / 2 + 5)){
 						//box.isCarried = true;
-						player.carry(box);
-						break;
+						if ((player.facing == FlxSprite.RIGHT && box.x > player.x) || (player.facing == FlxSprite.LEFT && box.x < player.x)){
+							player.carry(box);
+							break;
+						}
 							//box.drag.x = 0;
 							//box.acceleration.y = 0;
 					}
