@@ -16,6 +16,7 @@ package {
 		public var player:Player;
 		protected var _elevator:FlxSprite;
 		protected var boxes:FlxGroup;
+		protected var stones:FlxGroup;
 
 		protected var level1:BaseLevel;
 
@@ -86,6 +87,7 @@ package {
 			//FlxU.overlap(boxes, player, touchBox);
 			if (FlxG.keys.justPressed("SPACE")){
 				carryBox();
+				pullStone();
 			}
 
 			//level1.mainLayer.collide(player);
@@ -100,16 +102,19 @@ package {
 				player = sprite as Player;
 			}
 
-			if (sprite is Crate){
+			if (sprite is Box){
 				boxes = group as FlxGroup;
+			}
+			if (sprite is Stone){
+				stones = group as FlxGroup;
 			}
 		}
 
 		public function carryBox():void {
-			if (player.box != null){
+			if (player.box){
 				player.drop();
 			} else {
-				for each (var box:Crate in boxes.members){
+				for each (var box:Box in boxes.members){
 					//if (box.x - player.x < 1 && player.x - box.x < 1){
 					//box.kill();
 					//}
@@ -120,6 +125,30 @@ package {
 						//box.isCarried = true;
 						if ((player.facing == FlxSprite.RIGHT && box.x > player.x) || (player.facing == FlxSprite.LEFT && box.x < player.x)){
 							player.carry(box);
+							break;
+						}
+							//box.drag.x = 0;
+							//box.acceleration.y = 0;
+					}
+				}
+			}
+		}
+		
+		public function pullStone():void {
+			if (player.stone){
+				player.push();
+			} else {
+				for each (var stone:Stone in stones.members){
+					//if (box.x - player.x < 1 && player.x - box.x < 1){
+					//box.kill();
+					//}
+
+					var deltaX:Number = FlxU.abs((stone.x + stone.width / 2) - (player.x + player.width / 2));
+					var deltaY:Number = FlxU.abs((stone.y + stone.height / 2) - (player.y + player.height / 2));
+					if ((deltaX <= (player.width + stone.width) / 2 + 5) && (deltaY <= (player.height + stone.height) / 2 + 5)){
+						//stone.isCarried = true;
+						if ((player.facing == FlxSprite.RIGHT && stone.x > player.x) || (player.facing == FlxSprite.LEFT && stone.x < player.x)){
+							player.pull(stone);
 							break;
 						}
 							//box.drag.x = 0;

@@ -5,7 +5,8 @@ package {
 		[Embed(source="data/player.png")]
 		private var ImgPlayer:Class;
 
-		public var box:Crate;
+		public var box:Box;
+		public var stone:Stone;
 		public var standing:Boolean;
 
 		public function Player(X:Number, Y:Number){
@@ -35,17 +36,29 @@ package {
 			acceleration.x = 0;
 			if (FlxG.keys.LEFT){
 				facing = LEFT;
-				acceleration.x -= drag.x;
+				
+				if (stone) {
+					velocity.x = -100;
+					stone.velocity.x = -100;
+				}
+				else {
+					acceleration.x -= drag.x;
+				}
 			}
 			if (FlxG.keys.RIGHT){
 				facing = RIGHT;
-				acceleration.x += drag.x;
+				if (stone) {
+					velocity.x = 100;
+					stone.velocity.x = 100;
+				}
+				else {
+					acceleration.x += drag.x;
+				}
 			}
 
 
-			standing = (onFloor)?true:standing;
 			standing = (FlxU.abs(velocity.y) > 20)?false:standing;
-			trace(velocity.y)
+			standing = (onFloor)?true:standing;
 
 			if (standing){
 				//Jump controls
@@ -67,7 +80,7 @@ package {
 			//Default object physics update
 
 
-			if (box != null){
+			if (box){
 				//box.velocity.x = ((x + width / 2) - (box.x + box.width / 2)) * 50;
 				//box.velocity.y = ((y - box.height) - box.y) * 50;
 				box.x = x;
@@ -77,7 +90,7 @@ package {
 
 		}
 
-		public function carry(b:Crate):void {
+		public function carry(b:Box):void {
 			box = b;
 			box.solid = false;
 			height += box.height;
@@ -102,6 +115,22 @@ package {
 			//box.y = y;
 			//box.velocity.y = velocity.y;
 			box = null;
+		}
+		
+		public function pull(s:Stone):void {
+			stone = s;
+			//stone.solid = false;
+			//height += box.height;
+			//y -= box.height;
+			//offset.y -= box.height;
+
+			//offset.x -= (box.width - width) / 2;
+			//x -= (box.width - width) / 2;
+			//width = FlxU.max(width, box.width);
+		}
+		
+		public function push():void {
+			stone = null;
 		}
 	}
 }
