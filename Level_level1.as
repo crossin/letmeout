@@ -14,6 +14,7 @@ package
 
 		//Sprites
 		public var BoxLayer1Group:FlxGroup = new FlxGroup;
+		public var BoxLayer2Group:FlxGroup = new FlxGroup;
 		public var PlayerLayer1Group:FlxGroup = new FlxGroup;
 
 
@@ -34,6 +35,9 @@ package
 			masterLayer.add(BoxLayer1Group);
 			BoxLayer1Group.scrollFactor.x = 1.000000;
 			BoxLayer1Group.scrollFactor.y = 1.000000;
+			masterLayer.add(BoxLayer2Group);
+			BoxLayer2Group.scrollFactor.x = 1.000000;
+			BoxLayer2Group.scrollFactor.y = 1.000000;
 			masterLayer.add(PlayerLayer1Group);
 			PlayerLayer1Group.scrollFactor.x = 1.000000;
 			PlayerLayer1Group.scrollFactor.y = 1.000000;
@@ -42,6 +46,7 @@ package
 			if ( addToStage )
 			{
 				addSpritesForLayerBoxLayer1(onAddSpritesCallback);
+				addSpritesForLayerBoxLayer2(onAddSpritesCallback);
 				addSpritesForLayerPlayerLayer1(onAddSpritesCallback);
 				FlxG.state.add(masterLayer);
 			}
@@ -57,15 +62,22 @@ package
 
 		override public function addSpritesForLayerBoxLayer1(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(Crate, BoxLayer1Group , 101.000, 585.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 267.000, 597.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 386.000, 598.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 525.000, 591.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 175.000, 582.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 176.000, 570.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 175.000, 558.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 221.000, 564.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Crate, BoxLayer1Group , 280.000, 547.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 101.000, 585.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 267.000, 597.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 386.000, 598.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 525.000, 591.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 175.000, 582.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 176.000, 570.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 175.000, 558.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 221.000, 564.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, BoxLayer1Group , 280.000, 547.000, 0.000, false, onAddCallback );//"Box"
+		}
+
+		override public function addSpritesForLayerBoxLayer2(onAddCallback:Function = null):void
+		{
+			addSpriteToLayer(Stone, BoxLayer2Group , 245.000, 604.000, 0.000, false, onAddCallback );//"Stone"
+			addSpriteToLayer(Stone, BoxLayer2Group , 366.000, 559.000, 0.000, false, onAddCallback );//"Stone"
+			addSpriteToLayer(Stone, BoxLayer2Group , 476.000, 571.000, 0.000, false, onAddCallback );//"Stone"
 		}
 
 		override public function addSpritesForLayerPlayerLayer1(onAddCallback:Function = null):void

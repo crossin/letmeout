@@ -32,6 +32,7 @@ package
 		}
 
 		virtual public function addSpritesForLayerBoxLayer1(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerBoxLayer2(onAddCallback:Function = null):void { }
 		virtual public function addSpritesForLayerPlayerLayer1(onAddCallback:Function = null):void { }
 	}
 }
