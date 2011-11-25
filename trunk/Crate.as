@@ -1,5 +1,6 @@
 package {
 	import org.flixel.FlxSprite;
+	import org.flixel.FlxObject;
 	import org.flixel.FlxG;
 
 	public class Crate extends FlxSprite {
@@ -13,16 +14,17 @@ package {
 			height = height - 1; //draw the crate 1 pixel into the floor
 			acceleration.y = 400;
 			drag.x = 200;
-			//isCarried = false;
-		}
+			maxVelocity.y = 200;
 
-		//override public function update():void {
-			//super.update();
-			//if (isCarried){
-				//var pl:Player = (FlxG.state as PlayState).player;
-				//x = pl.x + pl.width / 2 - width / 2;
-				//y = pl.y - height;
-			//}
-		//}
+			//isCarried = false;
+
+		}
+		
+		override public function hitTop(Contact:FlxObject,Velocity:Number):void
+		{
+			Contact.velocity.y = 0;
+			if(!fixed)
+				velocity.y = Velocity;
+		}
 	}
 }

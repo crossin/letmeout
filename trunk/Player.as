@@ -6,6 +6,7 @@ package {
 		private var ImgPlayer:Class;
 
 		public var box:Crate;
+		public var standing:Boolean;
 
 		public function Player(X:Number, Y:Number){
 			super(X, Y);
@@ -20,6 +21,7 @@ package {
 			height = 10;
 			offset.x = 3;
 			offset.y = 3;
+			standing = false;
 
 			addAnimation("idle", [0], 0, false);
 			addAnimation("walk", [1, 2, 3, 0], 10, true);
@@ -40,7 +42,12 @@ package {
 				acceleration.x += drag.x;
 			}
 
-			if (onFloor){
+
+			standing = (onFloor)?true:standing;
+			standing = (FlxU.abs(velocity.y) > 20)?false:standing;
+			trace(velocity.y)
+
+			if (standing){
 				//Jump controls
 				if (FlxG.keys.justPressed("UP")){
 					velocity.y = -acceleration.y * 0.51;
@@ -67,25 +74,33 @@ package {
 				box.y = y;
 			}
 			super.update();
+
 		}
 
 		public function carry(b:Crate):void {
 			box = b;
 			box.solid = false;
 			height += box.height;
-			
 			y -= box.height;
 			offset.y -= box.height;
-			trace(height)
+
 			//offset.x -= (box.width - width) / 2;
 			//x -= (box.width - width) / 2;
 			//width = FlxU.max(width, box.width);
 		}
-		
+
 		public function drop():void {
-			box.solid = true;
 			height -= box.height;
+			y += box.height;
 			offset.y += box.height;
+			box.solid = true;
+			if (facing == RIGHT){
+				box.x = x + width+2;
+			} else {
+				box.x = x - box.width-2;
+			}
+			//box.y = y;
+			//box.velocity.y = velocity.y;
 			box = null;
 		}
 	}
