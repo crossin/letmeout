@@ -14,6 +14,7 @@ package {
 			drag.x = 200;
 			maxVelocity.y = 200;
 
+			//fixed = true;
 			//isCarried = false;
 
 		}

@@ -13,9 +13,11 @@ package
 		public var layerWallMap1:FlxTilemap;
 
 		//Sprites
-		public var BoxLayer1Group:FlxGroup = new FlxGroup;
-		public var BoxLayer2Group:FlxGroup = new FlxGroup;
-		public var PlayerLayer1Group:FlxGroup = new FlxGroup;
+		public var NoCollideLadderGroup:FlxGroup = new FlxGroup;
+		public var CollideBoxGroup:FlxGroup = new FlxGroup;
+		public var CollideStoneGroup:FlxGroup = new FlxGroup;
+		public var ItemItemGroup:FlxGroup = new FlxGroup;
+		public var PlayerPlayerGroup:FlxGroup = new FlxGroup;
 
 
 		public function Level_level1(addToStage:Boolean = true, onAddSpritesCallback:Function = null)
@@ -32,22 +34,30 @@ package
 
 			//Add layers to the master group in correct order.
 			masterLayer.add(layerWallMap1);
-			masterLayer.add(BoxLayer1Group);
-			BoxLayer1Group.scrollFactor.x = 1.000000;
-			BoxLayer1Group.scrollFactor.y = 1.000000;
-			masterLayer.add(BoxLayer2Group);
-			BoxLayer2Group.scrollFactor.x = 1.000000;
-			BoxLayer2Group.scrollFactor.y = 1.000000;
-			masterLayer.add(PlayerLayer1Group);
-			PlayerLayer1Group.scrollFactor.x = 1.000000;
-			PlayerLayer1Group.scrollFactor.y = 1.000000;
+			masterLayer.add(NoCollideLadderGroup);
+			NoCollideLadderGroup.scrollFactor.x = 1.000000;
+			NoCollideLadderGroup.scrollFactor.y = 1.000000;
+			masterLayer.add(CollideBoxGroup);
+			CollideBoxGroup.scrollFactor.x = 1.000000;
+			CollideBoxGroup.scrollFactor.y = 1.000000;
+			masterLayer.add(CollideStoneGroup);
+			CollideStoneGroup.scrollFactor.x = 1.000000;
+			CollideStoneGroup.scrollFactor.y = 1.000000;
+			masterLayer.add(ItemItemGroup);
+			ItemItemGroup.scrollFactor.x = 1.000000;
+			ItemItemGroup.scrollFactor.y = 1.000000;
+			masterLayer.add(PlayerPlayerGroup);
+			PlayerPlayerGroup.scrollFactor.x = 1.000000;
+			PlayerPlayerGroup.scrollFactor.y = 1.000000;
 
 
 			if ( addToStage )
 			{
-				addSpritesForLayerBoxLayer1(onAddSpritesCallback);
-				addSpritesForLayerBoxLayer2(onAddSpritesCallback);
-				addSpritesForLayerPlayerLayer1(onAddSpritesCallback);
+				addSpritesForLayerNoCollideLadder(onAddSpritesCallback);
+				addSpritesForLayerCollideBox(onAddSpritesCallback);
+				addSpritesForLayerCollideStone(onAddSpritesCallback);
+				addSpritesForLayerItemItem(onAddSpritesCallback);
+				addSpritesForLayerPlayerPlayer(onAddSpritesCallback);
 				FlxG.state.add(masterLayer);
 			}
 
@@ -60,29 +70,48 @@ package
 
 		}
 
-		override public function addSpritesForLayerBoxLayer1(onAddCallback:Function = null):void
+		override public function addSpritesForLayerNoCollideLadder(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(Box, BoxLayer1Group , 101.000, 585.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 267.000, 597.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 386.000, 598.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 525.000, 591.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 175.000, 582.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 176.000, 570.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 175.000, 558.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 221.000, 564.000, 0.000, false, onAddCallback );//"Box"
-			addSpriteToLayer(Box, BoxLayer1Group , 280.000, 547.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 47.000, 546.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 48.000, 530.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 49.000, 562.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 51.000, 578.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 80.000, 592.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 80.000, 576.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 80.000, 560.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 80.000, 544.000, 0.000, false, onAddCallback );//"ladder"
+			addSpriteToLayer(Ladder, NoCollideLadderGroup , 80.000, 528.000, 0.000, false, onAddCallback );//"ladder"
 		}
 
-		override public function addSpritesForLayerBoxLayer2(onAddCallback:Function = null):void
+		override public function addSpritesForLayerCollideBox(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(Stone, BoxLayer2Group , 245.000, 604.000, 0.000, false, onAddCallback );//"Stone"
-			addSpriteToLayer(Stone, BoxLayer2Group , 366.000, 559.000, 0.000, false, onAddCallback );//"Stone"
-			addSpriteToLayer(Stone, BoxLayer2Group , 476.000, 571.000, 0.000, false, onAddCallback );//"Stone"
+			addSpriteToLayer(Box, CollideBoxGroup , 101.000, 585.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 267.000, 597.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 386.000, 598.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 525.000, 591.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 175.000, 582.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 176.000, 570.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 175.000, 558.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 221.000, 564.000, 0.000, false, onAddCallback );//"Box"
+			addSpriteToLayer(Box, CollideBoxGroup , 280.000, 547.000, 0.000, false, onAddCallback );//"Box"
 		}
 
-		override public function addSpritesForLayerPlayerLayer1(onAddCallback:Function = null):void
+		override public function addSpritesForLayerCollideStone(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(Player, PlayerLayer1Group , 167.000, 471.000, 0.000, false, onAddCallback );//"player"
+			addSpriteToLayer(Stone, CollideStoneGroup , 245.000, 604.000, 0.000, false, onAddCallback );//"Stone"
+			addSpriteToLayer(Stone, CollideStoneGroup , 366.000, 559.000, 0.000, false, onAddCallback );//"Stone"
+			addSpriteToLayer(Stone, CollideStoneGroup , 476.000, 571.000, 0.000, false, onAddCallback );//"Stone"
+		}
+
+		override public function addSpritesForLayerItemItem(onAddCallback:Function = null):void
+		{
+			addSpriteToLayer(ItemKey, ItemItemGroup , 128.000, 592.000, 0.000, false, onAddCallback );//"Key"
+			addSpriteToLayer(ItemKey, ItemItemGroup , 528.000, 528.000, 0.000, false, onAddCallback );//"Key"
+		}
+
+		override public function addSpritesForLayerPlayerPlayer(onAddCallback:Function = null):void
+		{
+			addSpriteToLayer(Player, PlayerPlayerGroup , 167.000, 471.000, 0.000, false, onAddCallback );//"player"
 		}
 
 
