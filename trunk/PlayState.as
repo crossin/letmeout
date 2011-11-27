@@ -1,5 +1,6 @@
 package {
 	import org.flixel.*;
+	import flash.utils.getQualifiedClassName;
 
 	public class PlayState extends FlxState {
 		[Embed(source="data/map.png")]
@@ -14,14 +15,32 @@ package {
 		protected var _fps:FlxText;
 
 		public var player:Player;
+		public var inventory:Inventory;
 		protected var _elevator:FlxSprite;
 		protected var boxes:FlxGroup;
 		protected var stones:FlxGroup;
+		protected var ladder:FlxGroup;
+		protected var items:FlxGroup;
+		protected var groupCollide:FlxGroup;
+		protected var groupHint:FlxGroup;
 
 		protected var level1:BaseLevel;
 
 		override public function create():void {
 			level1 = new Level_level1(true, onSpriteAddedCallback);
+			groupCollide = new FlxGroup();
+			groupCollide.add(level1.mainLayer);
+			groupCollide.add(player);
+			groupCollide.add(boxes);
+			groupCollide.add(stones);
+
+			groupHint = new FlxGroup();
+			groupHint.add(player.markE);
+			add(groupHint);
+
+			inventory = new Inventory();
+			add(inventory);
+
 			FlxG.follow(player, 10);
 			FlxG.followBounds(0, 0, 640, 640);
 		/*
@@ -82,14 +101,24 @@ package {
 		override public function update():void {
 			//_fps.text = FlxU.floor(1/FlxG.elapsed)+" fps";
 			super.update();
-			collide();
+			//collide();
+			//level1.mainLayer.collide(player);
+			//level1.mainLayer.collide(boxes);
+			//level1.mainLayer.collide(stones);
+			groupCollide.collide();
+
 
 			//FlxU.overlap(boxes, player, touchBox);
-			if (FlxG.keys.justPressed("SPACE")){
-				carryBox();
-				pullStone();
-			}
 
+			// check player's action
+			player.markE.visible = false;
+			carryBox();
+			pullStone();
+
+			player.onLadder = false;
+			FlxU.overlap(player, ladder, overLadder);
+			FlxU.overlap(player, items, overItem);
+			//trace(player.climbing)
 			//level1.mainLayer.collide(player);
 			//level1.mainLayer.collide(boxes);
 			//if(FlxG.keys.justReleased("ENTER"))
@@ -108,11 +137,19 @@ package {
 			if (sprite is Stone){
 				stones = group as FlxGroup;
 			}
+			if (sprite is Ladder){
+				ladder = group as FlxGroup;
+			}
+			if (sprite is Item) {
+				items = group as FlxGroup;
+			}
 		}
 
 		public function carryBox():void {
 			if (player.box){
-				player.drop();
+				if (FlxG.keys.justPressed("SPACE")){
+					player.drop();
+				}
 			} else {
 				for each (var box:Box in boxes.members){
 					//if (box.x - player.x < 1 && player.x - box.x < 1){
@@ -124,7 +161,10 @@ package {
 					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= (player.height + box.height) / 2 + 5)){
 						//box.isCarried = true;
 						if ((player.facing == FlxSprite.RIGHT && box.x > player.x) || (player.facing == FlxSprite.LEFT && box.x < player.x)){
-							player.carry(box);
+							player.markE.visible = true;
+							if (FlxG.keys.justPressed("SPACE")){
+								player.carry(box);
+							}
 							break;
 						}
 							//box.drag.x = 0;
@@ -133,30 +173,38 @@ package {
 				}
 			}
 		}
-		
+
 		public function pullStone():void {
 			if (player.stone){
-				player.push();
+				if (FlxG.keys.justPressed("SPACE")){
+					player.letgo();
+				}
 			} else {
 				for each (var stone:Stone in stones.members){
-					//if (box.x - player.x < 1 && player.x - box.x < 1){
-					//box.kill();
-					//}
-
 					var deltaX:Number = FlxU.abs((stone.x + stone.width / 2) - (player.x + player.width / 2));
 					var deltaY:Number = FlxU.abs((stone.y + stone.height / 2) - (player.y + player.height / 2));
-					if ((deltaX <= (player.width + stone.width) / 2 + 5) && (deltaY <= (player.height + stone.height) / 2 + 5)){
-						//stone.isCarried = true;
+					if ((deltaX <= (player.width + stone.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - stone.height) / 2 + 5)){
 						if ((player.facing == FlxSprite.RIGHT && stone.x > player.x) || (player.facing == FlxSprite.LEFT && stone.x < player.x)){
-							player.pull(stone);
+							player.markE.visible = true;
+							if (FlxG.keys.justPressed("SPACE")){
+								player.pull(stone);
+							}
 							break;
 						}
-							//box.drag.x = 0;
-							//box.acceleration.y = 0;
 					}
 				}
 			}
 		}
 
+		public function overItem(Object1:FlxObject, Object2:FlxObject):void {
+			player.markE.visible = true;
+			if (FlxG.keys.justPressed("SPACE")){
+				inventory.addItem(getQualifiedClassName(Object2));
+			}
+		}
+
+		protected function overLadder(Object1:FlxObject, Object2:FlxObject):void {
+			(Object1 as Player).onLadder = true;
+		}
 	}
 }

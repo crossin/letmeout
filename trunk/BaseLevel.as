@@ -31,8 +31,10 @@ package
 			return obj;
 		}
 
-		virtual public function addSpritesForLayerBoxLayer1(onAddCallback:Function = null):void { }
-		virtual public function addSpritesForLayerBoxLayer2(onAddCallback:Function = null):void { }
-		virtual public function addSpritesForLayerPlayerLayer1(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerNoCollideLadder(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerCollideBox(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerCollideStone(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerItemItem(onAddCallback:Function = null):void { }
+		virtual public function addSpritesForLayerPlayerPlayer(onAddCallback:Function = null):void { }
 	}
 }
