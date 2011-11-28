@@ -13,10 +13,10 @@ package
 		public var layerWallMap1:FlxTilemap;
 
 		//Sprites
+		public var ItemItemGroup:FlxGroup = new FlxGroup;
 		public var NoCollideLadderGroup:FlxGroup = new FlxGroup;
 		public var CollideBoxGroup:FlxGroup = new FlxGroup;
 		public var CollideStoneGroup:FlxGroup = new FlxGroup;
-		public var ItemItemGroup:FlxGroup = new FlxGroup;
 		public var PlayerPlayerGroup:FlxGroup = new FlxGroup;
 
 
@@ -34,6 +34,9 @@ package
 
 			//Add layers to the master group in correct order.
 			masterLayer.add(layerWallMap1);
+			masterLayer.add(ItemItemGroup);
+			ItemItemGroup.scrollFactor.x = 1.000000;
+			ItemItemGroup.scrollFactor.y = 1.000000;
 			masterLayer.add(NoCollideLadderGroup);
 			NoCollideLadderGroup.scrollFactor.x = 1.000000;
 			NoCollideLadderGroup.scrollFactor.y = 1.000000;
@@ -43,9 +46,6 @@ package
 			masterLayer.add(CollideStoneGroup);
 			CollideStoneGroup.scrollFactor.x = 1.000000;
 			CollideStoneGroup.scrollFactor.y = 1.000000;
-			masterLayer.add(ItemItemGroup);
-			ItemItemGroup.scrollFactor.x = 1.000000;
-			ItemItemGroup.scrollFactor.y = 1.000000;
 			masterLayer.add(PlayerPlayerGroup);
 			PlayerPlayerGroup.scrollFactor.x = 1.000000;
 			PlayerPlayerGroup.scrollFactor.y = 1.000000;
@@ -53,10 +53,10 @@ package
 
 			if ( addToStage )
 			{
+				addSpritesForLayerItemItem(onAddSpritesCallback);
 				addSpritesForLayerNoCollideLadder(onAddSpritesCallback);
 				addSpritesForLayerCollideBox(onAddSpritesCallback);
 				addSpritesForLayerCollideStone(onAddSpritesCallback);
-				addSpritesForLayerItemItem(onAddSpritesCallback);
 				addSpritesForLayerPlayerPlayer(onAddSpritesCallback);
 				FlxG.state.add(masterLayer);
 			}
@@ -68,6 +68,14 @@ package
 			boundsMaxX = 640;
 			boundsMaxY = 640;
 
+		}
+
+		override public function addSpritesForLayerItemItem(onAddCallback:Function = null):void
+		{
+			addSpriteToLayer(ItemKey, ItemItemGroup , 128.000, 592.000, 0.000, false, onAddCallback );//"Key"
+			addSpriteToLayer(ItemKey, ItemItemGroup , 528.000, 528.000, 0.000, false, onAddCallback );//"Key"
+			addSpriteToLayer(ItemBadge, ItemItemGroup , 160.000, 592.000, 0.000, false, onAddCallback );//"Badge"
+			addSpriteToLayer(ItemStone, ItemItemGroup , 256.000, 544.000, 0.000, false, onAddCallback );//"Rock"
 		}
 
 		override public function addSpritesForLayerNoCollideLadder(onAddCallback:Function = null):void
@@ -101,12 +109,6 @@ package
 			addSpriteToLayer(Stone, CollideStoneGroup , 245.000, 604.000, 0.000, false, onAddCallback );//"Stone"
 			addSpriteToLayer(Stone, CollideStoneGroup , 366.000, 559.000, 0.000, false, onAddCallback );//"Stone"
 			addSpriteToLayer(Stone, CollideStoneGroup , 476.000, 571.000, 0.000, false, onAddCallback );//"Stone"
-		}
-
-		override public function addSpritesForLayerItemItem(onAddCallback:Function = null):void
-		{
-			addSpriteToLayer(ItemKey, ItemItemGroup , 128.000, 592.000, 0.000, false, onAddCallback );//"Key"
-			addSpriteToLayer(ItemKey, ItemItemGroup , 528.000, 528.000, 0.000, false, onAddCallback );//"Key"
 		}
 
 		override public function addSpritesForLayerPlayerPlayer(onAddCallback:Function = null):void

@@ -4,11 +4,14 @@
   <bgColor>0x000000</bgColor>
   <viewPos x="6" y="-138"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="5">
+  <spriteEntries currentId="8">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Box" idx="2" className="Box" image="crate.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="true" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Stone" idx="3" className="Stone" image="bg.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1"/>
-    <sprite name="ladder" idx="4" className="Ladder" image="bg.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="ladder" idx="4" className="Ladder" image="bg.png" width="16" height="16" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="16" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="Key" idx="5" className="ItemKey" image="key.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="Badge" idx="6" className="ItemBadge" image="badge.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="Rock" idx="7" className="ItemStone" image="stone.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
   </spriteEntries>
   <layers>
     <group name="Wall" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
@@ -59,7 +62,7 @@
       </maplayer>
     </group>
     <group name="NoCollide" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Ladder" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="C8AE21AB-F345-BF74-FD2F-CC1B61239436" x="47" y="546" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="6317C640-CD66-B9A9-D66D-E0937469E497" x="48" y="530" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="91A47486-FF3E-FD81-06C1-762C6825BAC0" x="49" y="562" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
@@ -71,8 +74,8 @@
         <sprite guid="F0DD33AF-903E-4C0D-8013-E4E116F81DF3" x="80" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
     </group>
-    <group name="Box" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+    <group name="Collide" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <spritelayer name="Box" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="183ADFEF-1FAB-1B7E-7D4A-0C09CE667F09" x="101" y="585" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="90CA73FA-BA07-7BA8-4F66-D96CBAF88248" x="386" y="598" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
@@ -83,14 +86,22 @@
         <sprite guid="32B76C58-8CC7-DA30-85C4-DBD01E4A8FF0" x="221" y="564" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="B5F45260-3023-56AD-C14F-5C90FBA1E6B8" x="280" y="547" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
       </spritelayer>
-      <spritelayer name="Layer2" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Stone" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="EA57021D-611B-7ABF-5EB9-43F31FAAB0B8" x="245" y="604" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="A41E1A70-771D-F0F4-DDF6-23B8AB3ED0F9" x="366" y="559" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="D574B151-D01D-6940-2CE4-516ED7F3D5AD" x="476" y="571" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
       </spritelayer>
     </group>
+    <group name="Item" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <spritelayer name="Item" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+        <sprite guid="264E096A-0246-413D-36AC-A216DBC0D6ED" x="128" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
+        <sprite guid="C2D95D4D-D6EF-ACE3-E5E4-E641BADE4834" x="528" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
+        <sprite guid="CBC00292-C4F2-4FDF-7925-0C43954AC65A" x="160" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="6"/>
+        <sprite guid="726A580D-9F32-0CD8-9FE5-432A12929A10" x="256" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="7"/>
+      </spritelayer>
+    </group>
     <group name="Player" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <spritelayer name="Layer1" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="167" y="471" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
     </group>

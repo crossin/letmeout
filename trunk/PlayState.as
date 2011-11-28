@@ -112,8 +112,7 @@ package {
 
 			// check player's action
 			player.markE.visible = false;
-			carryBox();
-			pullStone();
+			carryBox() || pullStone();
 
 			player.onLadder = false;
 			FlxU.overlap(player, ladder, overLadder);
@@ -140,17 +139,18 @@ package {
 			if (sprite is Ladder){
 				ladder = group as FlxGroup;
 			}
-			if (sprite is Item) {
+			if (sprite is Item){
 				items = group as FlxGroup;
 			}
 		}
 
-		public function carryBox():void {
+		public function carryBox():Boolean {
 			if (player.box){
 				if (FlxG.keys.justPressed("SPACE")){
 					player.drop();
+					return true;
 				}
-			} else {
+			} else if (!player.inAction){
 				for each (var box:Box in boxes.members){
 					//if (box.x - player.x < 1 && player.x - box.x < 1){
 					//box.kill();
@@ -165,21 +165,23 @@ package {
 							if (FlxG.keys.justPressed("SPACE")){
 								player.carry(box);
 							}
-							break;
+							return true;
 						}
 							//box.drag.x = 0;
 							//box.acceleration.y = 0;
 					}
 				}
 			}
+			return false;
 		}
 
-		public function pullStone():void {
+		public function pullStone():Boolean {
 			if (player.stone){
 				if (FlxG.keys.justPressed("SPACE")){
 					player.letgo();
+					return true;
 				}
-			} else {
+			} else if (!player.inAction){
 				for each (var stone:Stone in stones.members){
 					var deltaX:Number = FlxU.abs((stone.x + stone.width / 2) - (player.x + player.width / 2));
 					var deltaY:Number = FlxU.abs((stone.y + stone.height / 2) - (player.y + player.height / 2));
@@ -189,17 +191,21 @@ package {
 							if (FlxG.keys.justPressed("SPACE")){
 								player.pull(stone);
 							}
-							break;
+							return true;
 						}
 					}
 				}
 			}
+			return false;
 		}
 
 		public function overItem(Object1:FlxObject, Object2:FlxObject):void {
-			player.markE.visible = true;
-			if (FlxG.keys.justPressed("SPACE")){
-				inventory.addItem(getQualifiedClassName(Object2));
+			if (!player.inAction){
+				player.markE.visible = true;
+				if (FlxG.keys.justPressed("SPACE")){
+					inventory.addItem(getQualifiedClassName(Object2));
+					Object2.kill();
+				}
 			}
 		}
 

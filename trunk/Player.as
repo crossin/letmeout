@@ -156,7 +156,7 @@ package {
 			height += box.height;
 			y -= box.height;
 			offset.y -= box.height;
-
+			inAction = true;
 			//offset.x -= (box.width - width) / 2;
 			//x -= (box.width - width) / 2;
 			//width = FlxU.max(width, box.width);
@@ -175,14 +175,17 @@ package {
 			//box.y = y;
 			//box.velocity.y = velocity.y;
 			box = null;
+			inAction = false;
 		}
 
 		public function pull(s:Stone):void {
 			stone = s;
+			inAction = true;
 		}
 
 		public function letgo():void {
 			stone = null;
+			inAction = false;
 		}
 	}
 }
