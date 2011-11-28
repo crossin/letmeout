@@ -1,4 +1,5 @@
 package {
+	import org.flixel.FlxG;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxPoint;
 	import flash.utils.getDefinitionByName;
@@ -17,10 +18,26 @@ package {
 			index = 0;
 		}
 		
+		override public function update():void {
+			if (FlxG.keys.justPressed("X")) {
+				switchItem(1);
+			}
+			if (FlxG.keys.justPressed("Z")) {
+				switchItem(-1);
+			}
+		}
 		public function addItem(name:String):void {
 			var it:Class = getDefinitionByName(name) as Class;
 			index = items.push(it) - 1;
 			loadGraphic(it.Img);
+		}
+		
+		public function switchItem(offset:int):void {
+			if (items.length > 1) {
+				index = (index + offset) % items.length;
+				//loadGraphic(items[index].Img);
+				trace(items[index])
+			}
 		}
 	}
 }
