@@ -9,7 +9,6 @@ package
 		public function LetMeOut()
 		{
 			super(320,240,PlayState,2);
-			FlxState.bgColor = 0xff233e58;
 		}
 	}
 }

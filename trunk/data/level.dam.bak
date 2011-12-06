@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-  <version>2.1.1</version>
+  <version>2.1.4</version>
   <bgColor>0x000000</bgColor>
   <viewPos x="6" y="-138"/>
   <firstLayersTop>false</firstLayersTop>
@@ -14,8 +14,8 @@
     <sprite name="Rock" idx="7" className="ItemStone" image="stone.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
   </spriteEntries>
   <layers>
-    <group name="Wall" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <maplayer name="Map1" xScroll="1" yScroll="1" x="0" y="0" width="40" height="40" tileset="tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
+    <group name="Level1" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <maplayer name="Map1" xScroll="1" yScroll="1" x="0" y="0" width="40" height="40" tileset="tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="true" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
@@ -60,8 +60,12 @@
           <properties/>
         </tileProperties>
       </maplayer>
-    </group>
-    <group name="NoCollide" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
+      <spritelayer name="Item" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <sprite guid="264E096A-0246-413D-36AC-A216DBC0D6ED" x="128" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
+        <sprite guid="C2D95D4D-D6EF-ACE3-E5E4-E641BADE4834" x="528" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
+        <sprite guid="CBC00292-C4F2-4FDF-7925-0C43954AC65A" x="160" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="6"/>
+        <sprite guid="726A580D-9F32-0CD8-9FE5-432A12929A10" x="256" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="7"/>
+      </spritelayer>
       <spritelayer name="Ladder" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="C8AE21AB-F345-BF74-FD2F-CC1B61239436" x="47" y="546" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="6317C640-CD66-B9A9-D66D-E0937469E497" x="48" y="530" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
@@ -73,8 +77,6 @@
         <sprite guid="B8CD0237-80FE-9905-D63D-82536C6300DA" x="80" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="F0DD33AF-903E-4C0D-8013-E4E116F81DF3" x="80" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
-    </group>
-    <group name="Collide" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <spritelayer name="Box" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="183ADFEF-1FAB-1B7E-7D4A-0C09CE667F09" x="101" y="585" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
@@ -91,16 +93,6 @@
         <sprite guid="A41E1A70-771D-F0F4-DDF6-23B8AB3ED0F9" x="366" y="559" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="D574B151-D01D-6940-2CE4-516ED7F3D5AD" x="476" y="571" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
       </spritelayer>
-    </group>
-    <group name="Item" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <spritelayer name="Item" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
-        <sprite guid="264E096A-0246-413D-36AC-A216DBC0D6ED" x="128" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
-        <sprite guid="C2D95D4D-D6EF-ACE3-E5E4-E641BADE4834" x="528" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
-        <sprite guid="CBC00292-C4F2-4FDF-7925-0C43954AC65A" x="160" y="592" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="6"/>
-        <sprite guid="726A580D-9F32-0CD8-9FE5-432A12929A10" x="256" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="7"/>
-      </spritelayer>
-    </group>
-    <group name="Player" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
       <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="167" y="471" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
@@ -233,12 +225,14 @@
     <setting name="TileMapClass">FlxTilemap</setting>
     <setting name="FlixelPackage">org.flixel</setting>
     <setting name="GamePackage"/>
-    <setting name="MainLayer">WallMap1</setting>
-    <setting name="LevelName">level1</setting>
+    <setting name="IntermediateClass"/>
+    <setting name="BaseClassExtends"/>
     <setting name="BaseClass">BaseLevel</setting>
     <setting name="FlixelVersion">2.43</setting>
     <setting name="CSVDir">D:\Projects\LetMeOut\src\data</setting>
     <setting name="AS3Dir">D:\Projects\LetMeOut\src</setting>
+    <setting name="MainLayer">WallMap1</setting>
+    <setting name="LevelName">level1</setting>
   </exporter>
   <guides>
     <snap>true</snap>
