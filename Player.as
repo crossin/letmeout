@@ -117,8 +117,14 @@ package {
 			}
 
 			// check stand
-			status = ((status == STAND) && (FlxU.abs(velocity.y) > 20)) ? JUMP : status;
-			status = (onFloor) ? STAND : status;
+			if (isTouching(FLOOR)) {
+				status = STAND;
+			} else if (status == STAND) {
+				status = JUMP;
+			}
+			//status = ((status == STAND) && (FlxU.abs(velocity.y) > 20)) ? JUMP : status;
+			//status = (FLOOR) ? STAND : status;
+
 
 			// check on ladder
 			if (onLadder){
@@ -130,7 +136,6 @@ package {
 				status = JUMP;
 			}
 //trace(status)
-
 			if (box){
 				//box.velocity.x = ((x + width / 2) - (box.x + box.width / 2)) * 50;
 				//box.velocity.y = ((y - box.height) - box.y) * 50;

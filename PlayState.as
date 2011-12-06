@@ -27,9 +27,16 @@ package {
 		protected var level1:BaseLevel;
 
 		override public function create():void {
-			level1 = new Level_level1(true, onSpriteAddedCallback);
+			boxes = new FlxGroup;
+			stones = new FlxGroup;
+			ladder = new FlxGroup;
+			items = new FlxGroup;
+
+			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide = new FlxGroup();
-			groupCollide.add(level1.mainLayer);
+			//groupCollide.add(level1.mainLayer);
+			groupCollide.add(level1.hitTilemaps);
+			//trace(level1.hitTilemaps.members[0]._tileObjects.length)
 			groupCollide.add(player);
 			groupCollide.add(boxes);
 			groupCollide.add(stones);
@@ -41,8 +48,17 @@ package {
 			inventory = new Inventory();
 			add(inventory);
 
-			FlxG.follow(player, 10);
-			FlxG.followBounds(0, 0, 640, 640);
+			FlxG.camera.follow(player);
+
+			//camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
+			//FlxG.resetCameras(camera);
+			//camera.follow(player, FlxCamera.STYLE_PLATFORMER);
+			FlxG.worldBounds = new FlxRect(BaseLevel.boundsMinX, BaseLevel.boundsMinY, BaseLevel.boundsMaxX, BaseLevel.boundsMaxY);
+		
+
+			//FlxG.camera.bgColor = 0xff233e58
+			//FlxG.follow(player, 10);
+			//FlxG.followBounds(0, 0, 640, 640);
 		/*
 		   //Background
 		   FlxState.bgColor = 0xffacbcd7;
@@ -105,7 +121,7 @@ package {
 			//level1.mainLayer.collide(player);
 			//level1.mainLayer.collide(boxes);
 			//level1.mainLayer.collide(stones);
-			groupCollide.collide();
+			FlxG.collide(groupCollide, groupCollide);
 
 
 			//FlxU.overlap(boxes, player, touchBox);
@@ -115,8 +131,12 @@ package {
 			carryBox() || pullStone();
 
 			player.onLadder = false;
-			FlxU.overlap(player, ladder, overLadder);
-			FlxU.overlap(player, items, overItem);
+			FlxG.overlap(player, ladder, overLadder);
+			FlxG.overlap(player, items, overItem);
+			
+			FlxG.collide(level1.hitTilemaps, stones);
+			//FlxG.overlap(level1.hitTilemaps, player, null,null);
+			//trace(level1.hitTilemaps)
 			//trace(player.climbing)
 			//level1.mainLayer.collide(player);
 			//level1.mainLayer.collide(boxes);
@@ -125,23 +145,23 @@ package {
 
 		}
 
-		protected function onSpriteAddedCallback(sprite:FlxSprite, group:FlxGroup):void {
-			if (sprite is Player){
-				player = sprite as Player;
+		protected function onObjectAddedCallback(obj:Object, layer:FlxGroup, level:BaseLevel, scrollX:Number, scrollY:Number, properties:Array):Object {
+			if (obj is Player){
+				player = obj as Player;
 			}
-
-			if (sprite is Box){
-				boxes = group as FlxGroup;
+			if (obj is Box){
+				boxes.add(obj as Box);
 			}
-			if (sprite is Stone){
-				stones = group as FlxGroup;
+			if (obj is Stone){
+				stones.add(obj as Stone);
 			}
-			if (sprite is Ladder){
-				ladder = group as FlxGroup;
+			if (obj is Ladder){
+				ladder.add(obj as Ladder);
 			}
-			if (sprite is Item){
-				items = group as FlxGroup;
+			if (obj is Item){
+				items.add(obj as Item);
 			}
+			return obj;
 		}
 
 		public function carryBox():Boolean {
@@ -160,7 +180,7 @@ package {
 					var deltaY:Number = FlxU.abs((box.y + box.height / 2) - (player.y + player.height / 2));
 					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= (player.height + box.height) / 2 + 5)){
 						//box.isCarried = true;
-						if ((player.facing == FlxSprite.RIGHT && box.x > player.x) || (player.facing == FlxSprite.LEFT && box.x < player.x)){
+						if ((player.facing == FlxObject.RIGHT && box.x > player.x) || (player.facing == FlxObject.LEFT && box.x < player.x)){
 							player.markE.visible = true;
 							if (FlxG.keys.justPressed("SPACE")){
 								player.carry(box);
@@ -186,7 +206,7 @@ package {
 					var deltaX:Number = FlxU.abs((stone.x + stone.width / 2) - (player.x + player.width / 2));
 					var deltaY:Number = FlxU.abs((stone.y + stone.height / 2) - (player.y + player.height / 2));
 					if ((deltaX <= (player.width + stone.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - stone.height) / 2 + 5)){
-						if ((player.facing == FlxSprite.RIGHT && stone.x > player.x) || (player.facing == FlxSprite.LEFT && stone.x < player.x)){
+						if ((player.facing == FlxObject.RIGHT && stone.x > player.x) || (player.facing == FlxObject.LEFT && stone.x < player.x)){
 							player.markE.visible = true;
 							if (FlxG.keys.justPressed("SPACE")){
 								player.pull(stone);
