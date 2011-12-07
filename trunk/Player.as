@@ -185,10 +185,12 @@ package {
 
 		public function pull(s:Stone):void {
 			stone = s;
+			stone.move();
 			inAction = true;
 		}
 
 		public function letgo():void {
+			stone.isPulled = false;
 			stone = null;
 			inAction = false;
 		}
