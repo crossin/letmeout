@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -88,15 +88,16 @@ package
 			addSpriteToLayer(null, Box, ThingsGroup , 267.000, 597.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Box, ThingsGroup , 386.000, 598.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Box, ThingsGroup , 525.000, 591.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
-			addSpriteToLayer(null, Box, ThingsGroup , 175.000, 582.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
-			addSpriteToLayer(null, Box, ThingsGroup , 176.000, 570.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
-			addSpriteToLayer(null, Box, ThingsGroup , 175.000, 558.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
+			addSpriteToLayer(null, Box, ThingsGroup , 100.000, 532.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
+			addSpriteToLayer(null, Box, ThingsGroup , 100.000, 551.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
+			addSpriteToLayer(null, Box, ThingsGroup , 101.000, 568.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Box, ThingsGroup , 221.000, 564.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Box, ThingsGroup , 280.000, 547.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Stone, ThingsGroup , 473.000, 570.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
 			addSpriteToLayer(null, Stone, ThingsGroup , 368.000, 555.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
 			addSpriteToLayer(null, Stone, ThingsGroup , 245.000, 602.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
-			addSpriteToLayer(null, DoorUpdown, ThingsGroup , 318.000, 573.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"doorud"
+			linkedObjectDictionary[1] = addSpriteToLayer(null, DoorUpdown, ThingsGroup , 318.000, 573.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"doorud"
+			linkedObjectDictionary[0] = addSpriteToLayer(null, Trigger, ThingsGroup , 203.000, 581.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
@@ -106,6 +107,7 @@ package
 
 		public function generateObjectLinks(onAddCallback:Function = null):void
 		{
+			createLink(linkedObjectDictionary[0], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
 		}
 
 	}

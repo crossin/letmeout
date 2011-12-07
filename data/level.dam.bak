@@ -12,7 +12,8 @@
     <sprite name="Key" idx="5" className="ItemKey" image="key.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Badge" idx="6" className="ItemBadge" image="badge.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Rock" idx="7" className="ItemStone" image="stone.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
-    <sprite name="doorud" idx="9" className="DoorUpdown" image="door_ud.png" width="12" height="50" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="12" boundsHeight="50" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="doorud" idx="8" className="DoorUpdown" image="door_ud.png" width="12" height="50" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="12" boundsHeight="50" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="trigger" idx="9" className="Trigger" image="trigger.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="true" canRotate="true" surfaceObject="false" tileIndex="-1" selected="true"/>
   </spriteEntries>
   <layers>
     <group name="Level1" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
@@ -83,15 +84,16 @@
         <sprite guid="A55B58DE-A410-2886-5185-A0BE9D0D719C" x="267" y="597" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="90CA73FA-BA07-7BA8-4F66-D96CBAF88248" x="386" y="598" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="4640CC24-B69D-A7D9-1292-9C9A567B85E9" x="525" y="591" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
-        <sprite guid="3AC402FD-0418-0BDC-3B69-8433C9D7BBD5" x="175" y="582" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
-        <sprite guid="8329150D-7998-52DC-A587-1FF76CAD2A7A" x="176" y="570" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
-        <sprite guid="6D8A27CE-0217-06DA-A1A1-49C79A9FD7BB" x="175" y="558" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="3AC402FD-0418-0BDC-3B69-8433C9D7BBD5" x="100" y="532" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="8329150D-7998-52DC-A587-1FF76CAD2A7A" x="100" y="551" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
+        <sprite guid="6D8A27CE-0217-06DA-A1A1-49C79A9FD7BB" x="101" y="568" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="32B76C58-8CC7-DA30-85C4-DBD01E4A8FF0" x="221" y="564" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="B5F45260-3023-56AD-C14F-5C90FBA1E6B8" x="280" y="547" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="2"/>
         <sprite guid="18D880C8-3329-6E7D-206A-00AE94D33368" x="473" y="570" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="1BDD9647-A225-546B-FA30-691DDAA0370D" x="368" y="555" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="0987FE99-32B4-E0E9-4BCF-FAF9518EEAC5" x="245" y="602" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
-        <sprite guid="B5BE341E-9630-A4E1-AEC2-FB92B7661C08" x="318" y="573" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
+        <sprite guid="B5BE341E-9630-A4E1-AEC2-FB92B7661C08" x="318" y="573" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="8"/>
+        <sprite guid="F2F95F97-01C6-85D4-0C4D-C3DA675C7A4C" x="203" y="581" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
       </spritelayer>
       <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="167" y="471" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
@@ -219,7 +221,7 @@
     <colour>0x33a2f1</colour>
     <colour>0xb2dcee</colour>
   </colourGrid>
-  <exporter name="D:\Program Files (x86)\DAME\lua\Exporters\flixelComplex.lua" spritepos="Top Left" rotatedSpritePos="false">
+  <exporter name="D:\Program Files\DAME\lua\Exporters\flixelComplex.lua" spritepos="Top Left" rotatedSpritePos="false">
     <setting name="ExportOnlyCSV">false</setting>
     <setting name="Imports"/>
     <setting name="TileMapClass">FlxTilemap</setting>
