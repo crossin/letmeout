@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -96,7 +96,7 @@ package
 			addSpriteToLayer(null, Stone, ThingsGroup , 473.000, 570.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
 			addSpriteToLayer(null, Stone, ThingsGroup , 368.000, 555.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
 			addSpriteToLayer(null, Stone, ThingsGroup , 245.000, 602.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
-			linkedObjectDictionary[1] = addSpriteToLayer(null, DoorUpdown, ThingsGroup , 318.000, 573.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"doorud"
+			linkedObjectDictionary[1] = addSpriteToLayer(null, DoorUpdown, ThingsGroup , 318.000, 573.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"doorud"
 			linkedObjectDictionary[0] = addSpriteToLayer(null, Trigger, ThingsGroup , 203.000, 581.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 		}
 

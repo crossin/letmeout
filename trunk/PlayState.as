@@ -37,10 +37,8 @@ package
 			items = new FlxGroup;
 			triggers = new FlxGroup;
 			groupCollide = new FlxGroup();
-			
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
-			
 			groupHint = new FlxGroup();
 			add(groupHint);
 			groupHint.add(player.markE);
@@ -171,6 +169,7 @@ package
 			}
 			else if (obj is DoorUpdown)
 			{
+				(obj as DoorUpdown).init(properties[0].value);
 				groupCollide.add(obj as DoorUpdown);
 			}
 			else if (obj is Trigger)
