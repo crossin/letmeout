@@ -2,7 +2,7 @@
 <project>
   <version>2.1.4</version>
   <bgColor>0x000000</bgColor>
-  <viewPos x="6" y="-138"/>
+  <viewPos x="6" y="-254"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="10">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -95,7 +95,11 @@
         <sprite guid="18D880C8-3329-6E7D-206A-00AE94D33368" x="473" y="570" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="1BDD9647-A225-546B-FA30-691DDAA0370D" x="368" y="555" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
         <sprite guid="0987FE99-32B4-E0E9-4BCF-FAF9518EEAC5" x="245" y="602" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="3"/>
-        <sprite guid="B5BE341E-9630-A4E1-AEC2-FB92B7661C08" x="318" y="573" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="8"/>
+        <sprite guid="B5BE341E-9630-A4E1-AEC2-FB92B7661C08" x="318" y="573" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="8">
+          <properties>
+            <type typeof="Int" name="range" value="50"/>
+          </properties>
+        </sprite>
         <sprite guid="F2F95F97-01C6-85D4-0C4D-C3DA675C7A4C" x="203" y="581" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
       </spritelayer>
       <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
