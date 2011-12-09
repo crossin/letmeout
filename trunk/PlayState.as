@@ -43,7 +43,7 @@ package
 			add(groupHint);
 			groupHint.add(player.markE);
 			inventory = new Inventory();
-			groupHint.add(player.markE);
+			groupHint.add(inventory);
 			
 			FlxG.camera.follow(player);
 			
@@ -161,6 +161,9 @@ package
 			}
 			else if (obj is Ladder)
 			{
+				if (properties[0]) {
+					(obj as Ladder).isTop = true;
+				}
 				ladder.add(obj as Ladder);
 			}
 			else if (obj is Item)
@@ -281,7 +284,7 @@ package
 				player.markE.visible = true;
 				if (FlxG.keys.justPressed("SPACE"))
 				{
-					(Object2 as Trigger).target.visible = false;
+					(Object2 as Trigger).target.action();
 				}
 			}
 		}
@@ -289,6 +292,10 @@ package
 		protected function overLadder(Object1:FlxObject, Object2:FlxObject):void
 		{
 			(Object1 as Player).onLadder = true;
+			(Object1 as Player).onLadderTop = false;
+			if ((Object2 as Ladder).isTop && Object1.y < Object2.y) {
+				(Object1 as Player).onLadderTop = true;
+			}
 		}
 	}
 }

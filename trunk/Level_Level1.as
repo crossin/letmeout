@@ -71,15 +71,15 @@ package
 
 		public function addSpritesForLayerLadder(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 528.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
-			addSpriteToLayer(null, Ladder, LadderGroup , 48.000, 530.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
+			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 528.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"isTop", value:true }, null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 544.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
-			addSpriteToLayer(null, Ladder, LadderGroup , 47.000, 546.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
+			addSpriteToLayer(null, Ladder, LadderGroup , 49.000, 546.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"isTop", value:true }, null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 560.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 49.000, 562.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 576.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 51.000, 578.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
 			addSpriteToLayer(null, Ladder, LadderGroup , 80.000, 592.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
+			addSpriteToLayer(null, Ladder, LadderGroup , 51.000, 593.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"ladder"
 		}
 
 		public function addSpritesForLayerThings(onAddCallback:Function = null):void

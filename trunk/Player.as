@@ -1,89 +1,103 @@
-package {
+package
+{
 	import flash.display.Sprite;
 	import org.flixel.*;
-
-	public class Player extends FlxSprite {
+	
+	public class Player extends FlxSprite
+	{
 		[Embed(source="data/player.png")]
 		private var ImgPlayer:Class;
 		[Embed(source="data/mark_e.png")]
 		private var ImgMarkE:Class;
-
-
+		
 		public static const STAND:int = 1;
 		public static const JUMP:int = 2;
 		public static const CLIMB:int = 3;
-
+		
 		public var box:Box;
 		public var stone:Stone;
 		//public var standing:Boolean;
 		//public var climbing:Boolean;
 		public var onLadder:Boolean;
+		public var onLadderTop:Boolean;
 		public var inAction:Boolean;
-
+		
 		public var status:int;
-
+		
 		public var markE:FlxSprite;
-
-
-		public function Player(X:Number, Y:Number){
+		
+		public function Player(X:Number, Y:Number)
+		{
 			super(X, Y);
 			loadGraphic(ImgPlayer, true, true);
 			maxVelocity.x = 100; //walking speed
 			//maxVelocity.y = 100;
 			acceleration.y = 400; //gravity
 			drag.x = maxVelocity.x * 4; //deceleration (sliding to a stop)
-
+			
 			//tweak the bounding box for better feel
 			width = 8;
 			height = 10;
 			offset.x = 3;
 			offset.y = 3;
-
+			
 			status = STAND;
-
+			
 			onLadder = false;
+			onLadderTop = false;
 			inAction = false;
-
+			
 			addAnimation("idle", [0], 0, false);
 			addAnimation("walk", [1, 2, 3, 0], 10, true);
 			addAnimation("walk_back", [3, 2, 1, 0], 10, true);
 			addAnimation("flail", [1, 2, 3, 0], 18, true);
 			addAnimation("jump", [4], 0, false);
-
+			
 			markE = new FlxSprite(0, 0, ImgMarkE);
 			markE.active = false;
 			markE.visible = false;
 		}
-
-		override public function update():void {
+		
+		override public function update():void
+		{
 			//Smooth slidey walking controls
 			acceleration.x = 0;
-			if (FlxG.keys.LEFT){
+			if (FlxG.keys.LEFT)
+			{
 				facing = LEFT;
-
-				if (stone){
+				
+				if (stone)
+				{
 					velocity.x = -20;
 					stone.velocity.x = -20;
-				} else {
+				}
+				else
+				{
 					acceleration.x -= drag.x;
 				}
 			}
-			if (FlxG.keys.RIGHT){
+			if (FlxG.keys.RIGHT)
+			{
 				facing = RIGHT;
-				if (stone){
+				if (stone)
+				{
 					velocity.x = 20;
 					stone.velocity.x = 20;
-				} else {
+				}
+				else
+				{
 					acceleration.x += drag.x;
 				}
 			}
-
+			
 			// control on different status
-			if (status == STAND){
+			if (status == STAND)
+			{
 				maxVelocity.x = 100;
 				acceleration.y = 400;
 				//Jump controls
-				if (FlxG.keys.justPressed("UP") && !stone){
+				if (FlxG.keys.justPressed("UP") && !stone)
+				{
 					velocity.y = -acceleration.y * 0.51;
 					play("jump");
 				} //Animations
@@ -94,8 +108,9 @@ package {
 				else
 					play("idle");
 			}
-
-			if (status == JUMP){
+			
+			if (status == JUMP)
+			{
 				maxVelocity.x = 100;
 				acceleration.y = 400;
 				if (velocity.y < 0)
@@ -103,59 +118,72 @@ package {
 				else
 					play("flail");
 			}
-
-			if (status == CLIMB){
+			
+			if (status == CLIMB)
+			{
 				maxVelocity.x = 20;
 				acceleration.y = 0;
 				velocity.y = 0;
-				if (FlxG.keys.UP){
+				if (FlxG.keys.UP && !onLadderTop)
+				{
 					velocity.y = -40;
 				}
-				if (FlxG.keys.DOWN){
+				if (FlxG.keys.DOWN)
+				{
 					velocity.y = 40;
 				}
 			}
-
+			
 			// check stand
-			if (isTouching(FLOOR)) {
+			if (isTouching(FLOOR))
+			{
 				status = STAND;
-			} else if (status == STAND) {
+			}
+			else if (status == STAND)
+			{
 				status = JUMP;
 			}
 			//status = ((status == STAND) && (FlxU.abs(velocity.y) > 20)) ? JUMP : status;
 			//status = (FLOOR) ? STAND : status;
-
-
+			
 			// check on ladder
-			if (onLadder){
-				if (FlxG.keys.UP && status != CLIMB){
+			if (onLadder)
+			{
+				if (FlxG.keys.UP && status != CLIMB)
+				{
 					status = CLIMB;
 					velocity.x = 0;
 				}
-			} else if (status == CLIMB){
+			}
+			else if (status == CLIMB)
+			{
 				status = JUMP;
 			}
 //trace(status)
-			if (box){
+			if (box)
+			{
 				//box.velocity.x = ((x + width / 2) - (box.x + box.width / 2)) * 50;
 				//box.velocity.y = ((y - box.height) - box.y) * 50;
 				box.x = x;
 				box.y = y;
 			}
-			if (stone){
+			if (stone)
+			{
 				var deltaX:Number = FlxU.abs((stone.x + stone.width / 2) - (x + width / 2));
 				var deltaY:Number = FlxU.abs((stone.y + stone.height / 2) - (y + height / 2));
-				if ((deltaX > (width + stone.width) / 2 + 5) || (deltaY > FlxU.abs(height - stone.height) / 2 + 5)){
+				if ((deltaX > (width + stone.width) / 2 + 5) || (deltaY > FlxU.abs(height - stone.height) / 2 + 5))
+				{
 					letgo();
 				}
 			}
 			super.update();
-
+			
 			markE.reset(x + width / 2 - markE.width / 2, y - markE.height - 4);
-
+		
 		}
-
-		public function carry(b:Box):void {
+		
+		public function carry(b:Box):void
+		{
 			box = b;
 			box.solid = false;
 			height += box.height;
@@ -166,15 +194,19 @@ package {
 			//x -= (box.width - width) / 2;
 			//width = FlxU.max(width, box.width);
 		}
-
-		public function drop():void {
+		
+		public function drop():void
+		{
 			height -= box.height;
 			y += box.height;
 			offset.y += box.height;
 			box.solid = true;
-			if (facing == RIGHT){
+			if (facing == RIGHT)
+			{
 				box.x = x + width + 2;
-			} else {
+			}
+			else
+			{
 				box.x = x - box.width - 2;
 			}
 			//box.y = y;
@@ -182,14 +214,16 @@ package {
 			box = null;
 			inAction = false;
 		}
-
-		public function pull(s:Stone):void {
+		
+		public function pull(s:Stone):void
+		{
 			stone = s;
 			stone.move();
 			inAction = true;
 		}
-
-		public function letgo():void {
+		
+		public function letgo():void
+		{
 			stone.isPulled = false;
 			stone = null;
 			inAction = false;
