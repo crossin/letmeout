@@ -2,16 +2,16 @@ package
 {
 	import org.flixel.FlxSprite;
 	
-	public class DoorUpdown extends FlxSprite
+	public class DoorVertical extends FlxSprite
 	{
-		[Embed(source="data/door_ud.png")]
+		[Embed(source="data/door_v.png")]
 		private var Img:Class;
 		
 		public var yUp:Number;
 		public var yDown:Number;
 		public var isUp:Boolean;
 		
-		public function DoorUpdown(X:Number, Y:Number)
+		public function DoorVertical(X:Number, Y:Number)
 		{
 			super(X, Y, Img);
 			
