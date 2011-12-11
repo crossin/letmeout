@@ -29,15 +29,15 @@ package
 		public function Player(X:Number, Y:Number)
 		{
 			super(X, Y);
-			loadGraphic(ImgPlayer, true, true);
+			loadGraphic(ImgPlayer, true, true, 14, 24);
 			maxVelocity.x = 100; //walking speed
-			//maxVelocity.y = 100;
+			maxVelocity.y = 200;
 			acceleration.y = 400; //gravity
 			drag.x = maxVelocity.x * 4; //deceleration (sliding to a stop)
 			
 			//tweak the bounding box for better feel
 			width = 8;
-			height = 10;
+			height = 20;
 			offset.x = 3;
 			offset.y = 3;
 			
@@ -98,7 +98,7 @@ package
 				//Jump controls
 				if (FlxG.keys.justPressed("UP") && !stone)
 				{
-					velocity.y = -acceleration.y * 0.51;
+					velocity.y = -acceleration.y * 0.44;
 					play("jump");
 				} //Animations
 				else if (velocity.x != 0)
@@ -164,7 +164,7 @@ package
 			{
 				//box.velocity.x = ((x + width / 2) - (box.x + box.width / 2)) * 50;
 				//box.velocity.y = ((y - box.height) - box.y) * 50;
-				box.x = x;
+				box.x = x + width / 2 - box.width / 2;
 				box.y = y;
 			}
 			if (stone)
@@ -201,14 +201,15 @@ package
 			y += box.height;
 			offset.y += box.height;
 			box.solid = true;
-			if (facing == RIGHT)
-			{
-				box.x = x + width + 2;
-			}
-			else
-			{
-				box.x = x - box.width - 2;
-			}
+			//if (facing == RIGHT)
+			//{
+			//box.x = x + width + 2;
+			//}
+			//else
+			//{
+			//box.x = x - box.width - 2;
+			//}
+			box.y = y + height - box.height;
 			//box.y = y;
 			//box.velocity.y = velocity.y;
 			box = null;
@@ -224,7 +225,7 @@ package
 		
 		public function letgo():void
 		{
-			stone.isPulled = false;
+			stone.stop();
 			stone = null;
 			inAction = false;
 		}

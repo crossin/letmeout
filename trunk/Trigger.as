@@ -5,10 +5,11 @@ package {
 		[Embed(source="data/trigger.png")]
 		private var Img:Class;
 		
-		public var target:Object = null;
+		public var targets:Array;
 
 		public function Trigger(X:Number, Y:Number){
 			super(X, Y, Img);
+			targets = new Array();
 		}
 	}
 }

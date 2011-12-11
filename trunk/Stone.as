@@ -5,14 +5,14 @@ package
 	
 	public class Stone extends FlxSprite
 	{
-		[Embed(source="data/bg.png")]
-		private var ImgStone:Class;
+		[Embed(source="data/box_heavy.png")]
+		private var Img:Class;
 		
 		public var isPulled:Boolean;
 		
 		public function Stone(X:Number, Y:Number)
 		{
-			super(X, Y, ImgStone);
+			super(X, Y, Img);
 			height = height - 1; //draw the crate 1 pixel into the floor
 			acceleration.y = 400;
 			//acceleration.x = 200;
@@ -45,6 +45,11 @@ package
 			moves = true;
 			immovable = false;
 			isPulled = true;
+		}
+		
+		public function stop():void {
+			isPulled = false;
+			velocity.x = 0;
 		}
 	}
 }
