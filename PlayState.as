@@ -24,18 +24,23 @@ package
 		protected var ladder:FlxGroup;
 		protected var items:FlxGroup;
 		protected var triggers:FlxGroup;
+		protected var thorns:FlxGroup;
 		protected var groupCollide:FlxGroup;
 		protected var groupHint:FlxGroup;
+		
+		protected var isDead:Boolean;
+		protected var hasActed:Boolean;
 		
 		protected var level1:BaseLevel;
 		
 		override public function create():void
 		{
-			boxes = new FlxGroup;
-			stones = new FlxGroup;
-			ladder = new FlxGroup;
-			items = new FlxGroup;
-			triggers = new FlxGroup;
+			boxes = new FlxGroup();
+			stones = new FlxGroup();
+			ladder = new FlxGroup();
+			items = new FlxGroup();
+			triggers = new FlxGroup();
+			thorns = new FlxGroup();
 			groupCollide = new FlxGroup();
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
@@ -45,13 +50,15 @@ package
 			inventory = new Inventory();
 			groupHint.add(inventory);
 			
-			FlxG.camera.follow(player);
+			isDead = false;
 			
+			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN);
 			//camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
 			//FlxG.resetCameras(camera);
 			//camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 			FlxG.worldBounds = new FlxRect(BaseLevel.boundsMinX, BaseLevel.boundsMinY, BaseLevel.boundsMaxX, BaseLevel.boundsMaxY);
-		
+			FlxG.camera.bounds = FlxG.worldBounds;
+			FlxG.bgColor = 0xffffeeee;
 			//FlxG.camera.bgColor = 0xff233e58
 			//FlxG.follow(player, 10);
 			//FlxG.followBounds(0, 0, 640, 640);
@@ -107,13 +114,14 @@ package
 		   tx.shadow = 0x233e58;
 		   add(tx);
 		 */
-		
 		}
 		
 		override public function update():void
 		{
+			if (isDead)
+				return;
 			//_fps.text = FlxU.floor(1/FlxG.elapsed)+" fps";
-			super.update();
+			
 			//collide();
 			//level1.mainLayer.collide(player);
 			//level1.mainLayer.collide(boxes);
@@ -124,13 +132,14 @@ package
 			
 			// check player's action
 			player.markE.visible = false;
-			carryBox() || pullStone();
+			hasActed = carryBox() || pullStone();
 			
 			player.onLadder = false;
 			FlxG.overlap(player, ladder, overLadder);
 			FlxG.overlap(player, items, overItem);
 			FlxG.overlap(player, triggers, overTrigger);
-		
+			FlxG.overlap(player, thorns, beginDeath);
+			
 			//FlxG.collide(level1.hitTilemaps, stones);
 			//FlxG.overlap(level1.hitTilemaps, player, null,null);
 			//trace(level1.hitTilemaps)
@@ -139,7 +148,7 @@ package
 			//level1.mainLayer.collide(boxes);
 			//if(FlxG.keys.justReleased("ENTER"))
 			//FlxG.state = new PlayState2();
-		
+			super.update();
 		}
 		
 		protected function onObjectAddedCallback(obj:Object, layer:FlxGroup, level:BaseLevel, scrollX:Number, scrollY:Number, properties:Array):Object
@@ -161,7 +170,8 @@ package
 			}
 			else if (obj is Ladder)
 			{
-				if (properties[0]) {
+				if (properties[0])
+				{
 					(obj as Ladder).isTop = true;
 				}
 				ladder.add(obj as Ladder);
@@ -170,14 +180,18 @@ package
 			{
 				items.add(obj as Item);
 			}
-			else if (obj is DoorUpdown)
+			else if (obj is DoorVertical)
 			{
-				(obj as DoorUpdown).init(properties[0].value);
-				groupCollide.add(obj as DoorUpdown);
+				(obj as DoorVertical).init(properties[0].value);
+				groupCollide.add(obj as DoorVertical);
 			}
 			else if (obj is Trigger)
 			{
 				triggers.add(obj as Trigger);
+			}
+			else if (obj is Thorn)
+			{
+				thorns.add(obj as Thorn);
 			}
 			else if (obj is ObjectLink)
 			{
@@ -185,7 +199,7 @@ package
 				var trigger:Trigger = link.fromObject as Trigger;
 				if (trigger)
 				{
-					trigger.target = link.toObject;
+					trigger.targets.push(link.toObject);
 				}
 			}
 			return obj;
@@ -214,7 +228,7 @@ package
 					if ((deltaX <= (player.width + box.width) / 2 + 5) && (deltaY <= (player.height + box.height) / 2 + 5))
 					{
 						//box.isCarried = true;
-						if ((player.facing == FlxObject.RIGHT && box.x > player.x) || (player.facing == FlxObject.LEFT && box.x < player.x))
+						if ((player.facing == FlxObject.RIGHT && box.x + box.width > player.x + player.width) || (player.facing == FlxObject.LEFT && box.x < player.x))
 						{
 							player.markE.visible = true;
 							if (FlxG.keys.justPressed("SPACE"))
@@ -266,36 +280,56 @@ package
 		
 		public function overItem(Object1:FlxObject, Object2:FlxObject):void
 		{
-			if (!player.inAction)
+			if (!player.inAction && !hasActed)
 			{
 				player.markE.visible = true;
 				if (FlxG.keys.justPressed("SPACE"))
 				{
 					inventory.addItem(getQualifiedClassName(Object2));
 					Object2.kill();
+					hasActed = true;
 				}
 			}
 		}
 		
 		public function overTrigger(Object1:FlxObject, Object2:FlxObject):void
 		{
-			if (!player.inAction)
+			if (!player.inAction && !hasActed)
 			{
 				player.markE.visible = true;
 				if (FlxG.keys.justPressed("SPACE"))
 				{
-					(Object2 as Trigger).target.action();
+					for each (var tar:Object in(Object2 as Trigger).targets)
+					{
+						tar.action();
+					}
+					hasActed = true;
 				}
 			}
 		}
 		
-		protected function overLadder(Object1:FlxObject, Object2:FlxObject):void
+		public function overLadder(Object1:FlxObject, Object2:FlxObject):void
 		{
-			(Object1 as Player).onLadder = true;
-			(Object1 as Player).onLadderTop = false;
-			if ((Object2 as Ladder).isTop && Object1.y < Object2.y) {
-				(Object1 as Player).onLadderTop = true;
+			if (!player.inAction)
+			{
+				(Object1 as Player).onLadder = true;
+				(Object1 as Player).onLadderTop = false;
+				if ((Object2 as Ladder).isTop && Object1.y < Object2.y)
+				{
+					(Object1 as Player).onLadderTop = true;
+				}
 			}
+		}
+		
+		public function beginDeath(Object1:FlxObject, Object2:FlxObject):void
+		{
+			isDead = true;
+			FlxG.fade(0xff1e150f, 1, onFade);
+		}
+		
+		private function onFade():void
+		{
+			FlxG.resetState();
 		}
 	}
 }
