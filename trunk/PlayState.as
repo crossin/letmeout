@@ -185,6 +185,11 @@ package
 				(obj as DoorVertical).init(properties[0].value);
 				groupCollide.add(obj as DoorVertical);
 			}
+			else if (obj is DoorHorizontal)
+			{
+				(obj as DoorHorizontal).init(properties[0]. value);
+				groupCollide.add(obj as DoorHorizontal);
+			}
 			else if (obj is Trigger)
 			{
 				triggers.add(obj as Trigger);
