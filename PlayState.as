@@ -180,15 +180,15 @@ package
 			{
 				items.add(obj as Item);
 			}
-			else if (obj is DoorVertical)
+			else if (obj is VerticalDoor)
 			{
-				(obj as DoorVertical).init(properties[0].value);
-				groupCollide.add(obj as DoorVertical);
+				(obj as VerticalDoor).init(properties[0].value);
+				groupCollide.add(obj as VerticalDoor);
 			}
-			else if (obj is DoorHorizontal)
+			else if (obj is HorizontalPlatform)
 			{
-				(obj as DoorHorizontal).init(properties[0]. value);
-				groupCollide.add(obj as DoorHorizontal);
+				(obj as HorizontalPlatform).init(properties[0]. value);
+				groupCollide.add(obj as HorizontalPlatform);
 			}
 			else if (obj is Trigger)
 			{

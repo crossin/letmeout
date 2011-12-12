@@ -2,16 +2,16 @@ package
 {
 	import org.flixel.FlxSprite;
 	
-	public class DoorVertical extends FlxSprite
+	public class VerticalDoor extends FlxSprite
 	{
-		[Embed(source="data/door_v.png")]
+		[Embed(source="data/door.png")]
 		private var Img:Class;
 		
 		public var yUp:Number;
 		public var yDown:Number;
 		public var isUp:Boolean;
 		
-		public function DoorVertical(X:Number, Y:Number)
+		public function VerticalDoor(X:Number, Y:Number)
 		{
 			super(X, Y, Img);
 			
@@ -37,7 +37,7 @@ package
 			if (range < 0)
 			{
 				isUp = false;
-				yUp = y - range;
+				yUp = y + range;
 				yDown = y;
 			}
 			else

@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -84,45 +84,76 @@ package
 
 		public function addSpritesForLayerThings(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, DoorHorizontal, ThingsGroup , 861.000, 306.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:-500 }, null ), onAddCallback );//"door_h"
-			linkedObjectDictionary[3] = addSpriteToLayer(null, DoorVertical, ThingsGroup , 1536.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
-			linkedObjectDictionary[7] = addSpriteToLayer(null, Trigger, ThingsGroup , 1440.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[10] = addSpriteToLayer(null, HorizontalPlatform, ThingsGroup , 860.000, 306.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:-510 }, null ), onAddCallback );//"platform_h"
+			addSpriteToLayer(null, VerticalPlatformAuto, ThingsGroup , 400.000, 240.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:-100 }, null ), onAddCallback );//"platform_va"
+			addSpriteToLayer(null, HorizontalPlatformAuto, ThingsGroup , 450.000, 240.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:300 }, null ), onAddCallback );//"platform_ha"
+			linkedObjectDictionary[4] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 1536.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			linkedObjectDictionary[12] = addSpriteToLayer(null, Trigger, ThingsGroup , 1440.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 499.000, 626.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
-			linkedObjectDictionary[0] = addSpriteToLayer(null, Trigger, ThingsGroup , 1376.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
-			linkedObjectDictionary[4] = addSpriteToLayer(null, Trigger, ThingsGroup , 1344.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
-			linkedObjectDictionary[6] = addSpriteToLayer(null, Trigger, ThingsGroup , 1408.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
-			linkedObjectDictionary[5] = addSpriteToLayer(null, DoorVertical, ThingsGroup , 1520.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
-			linkedObjectDictionary[1] = addSpriteToLayer(null, DoorVertical, ThingsGroup , 1504.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
-			linkedObjectDictionary[2] = addSpriteToLayer(null, DoorVertical, ThingsGroup , 1488.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			linkedObjectDictionary[0] = addSpriteToLayer(null, Trigger, ThingsGroup , 1408.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[2] = addSpriteToLayer(null, Trigger, ThingsGroup , 1376.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[5] = addSpriteToLayer(null, Trigger, ThingsGroup , 1344.000, 614.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[3] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 1520.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			linkedObjectDictionary[6] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 1504.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			linkedObjectDictionary[1] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 1488.000, 577.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
 			addSpriteToLayer(null, Box, ThingsGroup , 522.000, 483.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
 			addSpriteToLayer(null, Stone, ThingsGroup , 982.000, 582.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone"
-			linkedObjectDictionary[8] = addSpriteToLayer(null, Trigger, ThingsGroup , 1077.000, 551.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[7] = addSpriteToLayer(null, Trigger, ThingsGroup , 1077.000, 551.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 515.000, 626.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 757.000, 627.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
 			addSpriteToLayer(null, Box, ThingsGroup , 128.000, 608.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Box"
-			linkedObjectDictionary[9] = addSpriteToLayer(null, DoorVerticalBack, ThingsGroup , 1040.000, 513.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_vb"
+			linkedObjectDictionary[8] = addSpriteToLayer(null, VerticalDoorBack, ThingsGroup , 1040.000, 513.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_vb"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 883.000, 421.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			linkedObjectDictionary[9] = addSpriteToLayer(null, Trigger, ThingsGroup , 944.000, 310.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			linkedObjectDictionary[11] = addSpriteToLayer(null, Trigger, ThingsGroup , 304.000, 278.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 497.000, 405.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 402.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 418.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 434.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 450.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 466.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 482.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 498.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 514.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 530.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 674.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 658.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 642.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 626.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 610.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 594.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 578.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 562.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 546.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 690.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 706.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 722.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 738.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 754.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 770.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			addSpriteToLayer(null, Thorn, ThingsGroup , 451.000, 421.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, Player, PlayerGroup , 80.000, 592.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
+			addSpriteToLayer(null, Player, PlayerGroup , 512.000, 144.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
 		}
 
 		public function generateObjectLinks(onAddCallback:Function = null):void
 		{
 			createLink(linkedObjectDictionary[0], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[0], linkedObjectDictionary[2], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[0], linkedObjectDictionary[3], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[4], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[4], linkedObjectDictionary[5], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[4], linkedObjectDictionary[3], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[6], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[6], linkedObjectDictionary[5], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[6], linkedObjectDictionary[2], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[7], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[7], linkedObjectDictionary[2], onAddCallback, generateProperties( null ) );
-			createLink(linkedObjectDictionary[8], linkedObjectDictionary[9], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[2], linkedObjectDictionary[3], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[2], linkedObjectDictionary[4], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[5], linkedObjectDictionary[6], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[5], linkedObjectDictionary[3], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[5], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[7], linkedObjectDictionary[8], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[9], linkedObjectDictionary[10], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[11], linkedObjectDictionary[10], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[0], linkedObjectDictionary[4], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[0], linkedObjectDictionary[6], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[12], linkedObjectDictionary[6], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[2], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
 		}
 
 	}
