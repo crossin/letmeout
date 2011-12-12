@@ -2,16 +2,16 @@ package
 {
 	import org.flixel.FlxSprite;
 	
-	public class DoorHorizontal extends FlxSprite
+	public class HorizontalPlatform extends FlxSprite
 	{
-		[Embed(source="data/door_h.png")]
+		[Embed(source="data/platform.png")]
 		private var Img:Class;
 		
 		public var xLeft:Number;
 		public var xRight:Number;
 		public var isLeft:Boolean;
 		
-		public function DoorHorizontal(X:Number, Y:Number)
+		public function HorizontalPlatform(X:Number, Y:Number)
 		{
 			super(X, Y, Img);
 			
@@ -25,7 +25,7 @@ package
 			{
 				velocity.x = -50;
 			}
-			if (!isLeft && y < xRight)
+			if (!isLeft && x < xRight)
 			{
 				velocity.x = 50;
 			}
@@ -37,7 +37,7 @@ package
 			if (range < 0)
 			{
 				isLeft = false;
-				xLeft = x - range;
+				xLeft = x + range;
 				xRight = x;
 			}
 			else

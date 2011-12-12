@@ -2,12 +2,12 @@ package
 {
 	import org.flixel.FlxG;
 	
-	public class DoorVerticalBack extends DoorVertical
+	public class VerticalDoorBack extends VerticalDoor
 	{
 		public var timer:Number;
 		public var hasMoved:Boolean;
 		
-		public function DoorVerticalBack(X:Number, Y:Number)
+		public function VerticalDoorBack(X:Number, Y:Number)
 		{
 			super(X, Y);
 			timer = 0;
