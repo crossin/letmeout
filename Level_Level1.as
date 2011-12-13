@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -132,6 +132,16 @@ package
 			addSpriteToLayer(null, Thorn, ThingsGroup , 754.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 770.000, 277.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
 			addSpriteToLayer(null, Thorn, ThingsGroup , 451.000, 421.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"thorn"
+			linkedObjectDictionary[14] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 563.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:2 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[15] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 579.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:1 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[16] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 595.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:0 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[19] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 643.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:0 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[18] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 627.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:1 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[17] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 611.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:2 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[22] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 691.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:0 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[21] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 675.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:1 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[20] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 659.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:2 }, null ), onAddCallback );//"thorn_a"
+			linkedObjectDictionary[13] = addSpriteToLayer(null, Trigger, ThingsGroup , 528.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
@@ -154,6 +164,15 @@ package
 			createLink(linkedObjectDictionary[0], linkedObjectDictionary[6], onAddCallback, generateProperties( null ) );
 			createLink(linkedObjectDictionary[12], linkedObjectDictionary[6], onAddCallback, generateProperties( null ) );
 			createLink(linkedObjectDictionary[2], linkedObjectDictionary[1], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[14], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[15], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[16], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[17], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[18], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[19], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[20], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[21], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[13], linkedObjectDictionary[22], onAddCallback, generateProperties( null ) );
 		}
 
 	}

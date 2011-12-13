@@ -2,9 +2,9 @@
 <project>
   <version>2.1.4</version>
   <bgColor>0xffeeee</bgColor>
-  <viewPos x="-238" y="-28"/>
+  <viewPos x="-492" y="-11"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="15">
+  <spriteEntries currentId="16">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Box" idx="2" className="Box" image="crate.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Stone" idx="3" className="Stone" image="box_heavy.png" width="40" height="40" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="40" boundsHeight="40" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -13,7 +13,12 @@
     <sprite name="Key" idx="6" className="ItemKey" image="key.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Badge" idx="7" className="ItemBadge" image="badge.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="trigger" idx="8" className="Trigger" image="trigger.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
-    <sprite name="thorn" idx="9" className="Thorn" image="thorn.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="thorn" idx="9" className="Thorn" image="thorn.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="thorn_a" idx="15" className="ThornAuto" image="thorn.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true">
+      <properties>
+        <type typeof="Int" name="offset" value="0"/>
+      </properties>
+    </sprite>
     <sprite name="door_v" idx="10" className="VerticalDoor" image="door.png" width="12" height="50" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="12" boundsHeight="50" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1">
       <properties>
         <type typeof="Int" name="range" value="50"/>
@@ -127,7 +132,7 @@
         <sprite guid="D10A9F5F-0529-441D-2371-377F7610A60D" x="592" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="A90B94EC-36F6-ED36-57DD-6FCEC5E59557" x="592" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
-      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="181F43C6-2924-30A0-0223-2079012D2798" x="860" y="306" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="12">
           <properties>
             <dataOverride name="range" typeof="Int" value="-510" idx="0"/>
@@ -197,8 +202,48 @@
         <sprite guid="E078996E-819C-6DBA-2C9B-8776715E1C5F" x="738" y="277" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
         <sprite guid="C2757FC1-9569-8894-05AF-B113A397C5B8" x="754" y="277" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
         <sprite guid="A6026C3F-4BA8-06C9-22B5-0814AAC3EE61" x="770" y="277" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
+        <sprite guid="506263D7-A541-A0DE-3C4A-8D49B7EB0BCA" x="451" y="421" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="9"/>
+        <sprite guid="8EEA514B-F70F-F368-CDCF-87B3F319C368" x="563" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="2" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="D453727C-F5C9-BFE0-1A47-4DB2E0070E89" x="579" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="1" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="3D5D47AE-BE48-AA6F-EC52-89BDB375911F" x="595" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties/>
+        </sprite>
+        <sprite guid="577684C5-7CCC-73C9-9C80-17F159CE1BC2" x="643" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties/>
+        </sprite>
+        <sprite guid="0BF0692D-39B9-651C-C8C9-74628DBC88B8" x="627" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="1" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="996699EE-4DA2-7075-8303-F08B6A30C1E5" x="611" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="2" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="9533D6FF-847C-4558-F76B-855F5E62854C" x="691" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties/>
+        </sprite>
+        <sprite guid="D4C17B8A-F69B-21B9-DAB4-F60EFC39B1E9" x="675" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="1" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="FE6D9C69-FF23-CB79-A8D2-5D9A1DCA38E6" x="659" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="15">
+          <properties>
+            <dataOverride name="offset" typeof="Int" value="2" idx="0"/>
+          </properties>
+        </sprite>
       </spritelayer>
-      <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="512" y="144" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
     </group>
