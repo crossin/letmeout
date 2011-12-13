@@ -25,6 +25,7 @@ package
 		protected var items:FlxGroup;
 		protected var triggers:FlxGroup;
 		protected var thorns:FlxGroup;
+		protected var locks:FlxGroup;
 		protected var groupCollide:FlxGroup;
 		protected var groupHint:FlxGroup;
 		
@@ -41,12 +42,14 @@ package
 			items = new FlxGroup();
 			triggers = new FlxGroup();
 			thorns = new FlxGroup();
+			locks = new FlxGroup();
 			groupCollide = new FlxGroup();
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
 			groupHint = new FlxGroup();
 			add(groupHint);
 			groupHint.add(player.markE);
+			groupHint.add(player.markQ);
 			inventory = new Inventory();
 			groupHint.add(inventory);
 			
@@ -132,7 +135,8 @@ package
 			
 			// check player's action
 			player.markE.visible = false;
-			hasActed = carryBox() || pullStone();
+			player.markQ.visible = false;
+			hasActed = carryBox() || pullStone() || openLock();
 			
 			player.onLadder = false;
 			FlxG.overlap(player, ladder, overLadder);
@@ -200,6 +204,11 @@ package
 				if (obj is ThornAuto) {
 					(obj as ThornAuto).init(properties[0].value);
 				}
+			}
+			else if (obj is Lock)
+			{
+				locks.add(obj as Lock);
+				groupCollide.add(obj as Lock);
 			}
 			else if (obj is ObjectLink)
 			{
@@ -277,6 +286,31 @@ package
 							if (FlxG.keys.justPressed("SPACE"))
 							{
 								player.pull(stone);
+							}
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		
+		public function openLock():Boolean
+		{
+			if (!player.inAction)
+			{
+				for each (var lock:Lock in locks.members)
+				{
+					var deltaX:Number = FlxU.abs((lock.x + lock.width / 2) - (player.x + player.width / 2));
+					var deltaY:Number = FlxU.abs((lock.y + lock.height / 2) - (player.y + player.height / 2));
+					if ((deltaX <= (player.width + lock.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - lock.height) / 2 + 5))
+					{
+						if ((player.facing == FlxObject.RIGHT && lock.x > player.x) || (player.facing == FlxObject.LEFT && lock.x < player.x))
+						{
+							player.markQ.visible = true;
+							if (FlxG.keys.justPressed("CONTROL"))
+							{
+								//lock.open();
 							}
 							return true;
 						}
