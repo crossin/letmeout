@@ -197,6 +197,9 @@ package
 			else if (obj is Thorn)
 			{
 				thorns.add(obj as Thorn);
+				if (obj is ThornAuto) {
+					(obj as ThornAuto).init(properties[0].value);
+				}
 			}
 			else if (obj is ObjectLink)
 			{
