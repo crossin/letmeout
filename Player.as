@@ -9,6 +9,8 @@ package
 		private var ImgPlayer:Class;
 		[Embed(source="data/mark_e.png")]
 		private var ImgMarkE:Class;
+		[Embed(source="data/mark_q.png")]
+		private var ImgMarkQ:Class;
 		
 		public static const STAND:int = 1;
 		public static const JUMP:int = 2;
@@ -25,6 +27,7 @@ package
 		public var status:int;
 		
 		public var markE:FlxSprite;
+		public var markQ:FlxSprite;
 		
 		public function Player(X:Number, Y:Number)
 		{
@@ -56,6 +59,10 @@ package
 			markE = new FlxSprite(0, 0, ImgMarkE);
 			markE.active = false;
 			markE.visible = false;
+			
+			markQ = new FlxSprite(0, 0, ImgMarkQ);
+			markQ.active = false;
+			markQ.visible = false;
 		}
 		
 		override public function update():void
@@ -178,7 +185,19 @@ package
 			}
 			super.update();
 			
-			markE.reset(x + width / 2 - markE.width / 2, y - markE.height - 4);
+			if (markE.visible && markQ.visible)
+			{
+				markE.reset(x + width / 2 - markE.width / 2 + 5, y - markE.height - 4);
+				markQ.reset(x + width / 2 - markQ.width / 2 - 5, y - markQ.height - 4);
+			}
+			else if (markE.visible)
+			{
+				markE.reset(x + width / 2 - markE.width / 2, y - markE.height - 4);
+			}
+			else if (markQ.visible)
+			{
+				markQ.reset(x + width / 2 - markQ.width / 2, y - markQ.height - 4);
+			}
 		
 		}
 		
