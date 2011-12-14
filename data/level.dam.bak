@@ -44,8 +44,11 @@
         <type typeof="Int" name="range" value="50"/>
       </properties>
     </sprite>
-    <sprite name="lock_rect" idx="16" className="LockRect" image="lock_rect.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
-    <sprite name="square" idx="17" className="ItemSquare" image="square.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="door_lock" idx="16" className="VerticalDoorLock" image="lock_rect.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1">
+      <properties>
+        <type typeof="Int" name="range" value="50"/>
+      </properties>
+    </sprite>
   </spriteEntries>
   <links>
     <link from="4CDAE06C-4DEE-8842-1AF0-60C86C72A82E" to="1F02083C-56EA-A430-67BD-33614F5B4DA6"/>
@@ -118,9 +121,9 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Items" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Items" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="D1257A7A-A4AA-58AD-C1D6-BE794C12FBF6" x="1877" y="613" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
-        <sprite guid="A8C659FD-3209-DAC6-EDC4-F6438F09256D" x="784" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17"/>
+        <sprite guid="2CC8428D-6912-1A63-4215-EC33DEBB1CAF" x="736" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="6"/>
       </spritelayer>
       <spritelayer name="Ladder" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
         <sprite guid="2CF3328F-C495-A6E4-5E0A-0DC818906C3F" x="432" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4">
@@ -144,7 +147,7 @@
         <sprite guid="D10A9F5F-0529-441D-2371-377F7610A60D" x="592" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="A90B94EC-36F6-ED36-57DD-6FCEC5E59557" x="592" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
-      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="181F43C6-2924-30A0-0223-2079012D2798" x="860" y="306" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="13">
           <properties>
             <dataOverride name="range" typeof="Int" value="-510" idx="0"/>
@@ -255,7 +258,11 @@
           </properties>
         </sprite>
         <sprite guid="D71B6DE6-D016-0C57-1B05-A1FB298A8ECA" x="528" y="166" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="8"/>
-        <sprite guid="19B5F1D7-33E0-D26D-87FE-9CABFEA5B7A8" x="832" y="152" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16"/>
+        <sprite guid="19B5F1D7-33E0-D26D-87FE-9CABFEA5B7A8" x="832" y="152" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16">
+          <properties>
+            <dataOverride name="range" typeof="Int" value="24" idx="0"/>
+          </properties>
+        </sprite>
       </spritelayer>
       <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="752" y="144" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
