@@ -4,7 +4,7 @@
   <bgColor>0xffeeee</bgColor>
   <viewPos x="-577" y="-11"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="17">
+  <spriteEntries currentId="18">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Box" idx="2" className="Box" image="crate.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Stone" idx="3" className="Stone" image="box_heavy.png" width="40" height="40" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="40" boundsHeight="40" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -44,7 +44,8 @@
         <type typeof="Int" name="range" value="50"/>
       </properties>
     </sprite>
-    <sprite name="lock_rect" idx="16" className="LockRect" image="lock_rect.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="lock_rect" idx="16" className="LockRect" image="lock_rect.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="square" idx="17" className="ItemSquare" image="square.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
   </spriteEntries>
   <links>
     <link from="4CDAE06C-4DEE-8842-1AF0-60C86C72A82E" to="1F02083C-56EA-A430-67BD-33614F5B4DA6"/>
@@ -117,8 +118,9 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <spritelayer name="Items" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Items" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="D1257A7A-A4AA-58AD-C1D6-BE794C12FBF6" x="1877" y="613" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="5"/>
+        <sprite guid="A8C659FD-3209-DAC6-EDC4-F6438F09256D" x="784" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17"/>
       </spritelayer>
       <spritelayer name="Ladder" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="true">
         <sprite guid="2CF3328F-C495-A6E4-5E0A-0DC818906C3F" x="432" y="320" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4">
@@ -142,7 +144,7 @@
         <sprite guid="D10A9F5F-0529-441D-2371-377F7610A60D" x="592" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="A90B94EC-36F6-ED36-57DD-6FCEC5E59557" x="592" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
-      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
+      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
         <sprite guid="181F43C6-2924-30A0-0223-2079012D2798" x="860" y="306" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="13">
           <properties>
             <dataOverride name="range" typeof="Int" value="-510" idx="0"/>
