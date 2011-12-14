@@ -188,6 +188,9 @@ package
 			{
 				(obj as VerticalDoor).init(properties[0].value);
 				groupCollide.add(obj as VerticalDoor);
+				if (obj is VerticalDoorLock) {
+					locks.add(obj as VerticalDoorLock);
+				}
 			}
 			else if (obj is HorizontalPlatform)
 			{
@@ -204,11 +207,6 @@ package
 				if (obj is ThornAuto) {
 					(obj as ThornAuto).init(properties[0].value);
 				}
-			}
-			else if (obj is Lock)
-			{
-				locks.add(obj as Lock);
-				groupCollide.add(obj as Lock);
 			}
 			else if (obj is ObjectLink)
 			{
@@ -299,7 +297,7 @@ package
 		{
 			if (!player.inAction)
 			{
-				for each (var lock:Lock in locks.members)
+				for each (var lock:VerticalDoorLock in locks.members)
 				{
 					var deltaX:Number = FlxU.abs((lock.x + lock.width / 2) - (player.x + player.width / 2));
 					var deltaY:Number = FlxU.abs((lock.y + lock.height / 2) - (player.y + player.height / 2));

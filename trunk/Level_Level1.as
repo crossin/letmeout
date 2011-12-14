@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -64,7 +64,7 @@ package
 		public function addSpritesForLayerItems(onAddCallback:Function = null):void
 		{
 			addSpriteToLayer(null, ItemStone, ItemsGroup , 1877.000, 613.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
-			addSpriteToLayer(null, ItemSquare, ItemsGroup , 784.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"square"
+			addSpriteToLayer(null, ItemKey, ItemsGroup , 736.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Key"
 		}
 
 		public function addSpritesForLayerLadder(onAddCallback:Function = null):void
@@ -143,7 +143,7 @@ package
 			linkedObjectDictionary[21] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 675.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:1 }, null ), onAddCallback );//"thorn_a"
 			linkedObjectDictionary[20] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 659.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:2 }, null ), onAddCallback );//"thorn_a"
 			linkedObjectDictionary[13] = addSpriteToLayer(null, Trigger, ThingsGroup , 528.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
-			addSpriteToLayer(null, LockRect, ThingsGroup , 832.000, 152.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"lock_rect"
+			addSpriteToLayer(null, VerticalDoorLock, ThingsGroup , 832.000, 152.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:24 }, null ), onAddCallback );//"door_lock"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
