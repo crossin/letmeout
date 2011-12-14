@@ -7,5 +7,12 @@ package {
 			super(X, Y);
 			immovable = true;
 		}
+		
+		public function open(item:Class):Boolean{
+			if (item == ItemSquare) {
+				return true;
+			}
+			return false;
+		}
 	}
 }

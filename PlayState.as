@@ -310,7 +310,9 @@ package
 							player.markQ.visible = true;
 							if (FlxG.keys.justPressed("CONTROL"))
 							{
-								//lock.open();
+								if (lock.open(inventory.getItem())) {
+									inventory.useItem();
+								}
 							}
 							return true;
 						}
