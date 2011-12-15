@@ -4,7 +4,7 @@
   <bgColor>0xffeeee</bgColor>
   <viewPos x="-577" y="-11"/>
   <firstLayersTop>false</firstLayersTop>
-  <spriteEntries currentId="18">
+  <spriteEntries currentId="17">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Box" idx="2" className="Box" image="crate.png" width="14" height="14" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="14" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
     <sprite name="Stone" idx="3" className="Stone" image="box_heavy.png" width="40" height="40" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="40" boundsHeight="40" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -44,7 +44,7 @@
         <type typeof="Int" name="range" value="50"/>
       </properties>
     </sprite>
-    <sprite name="door_lock" idx="16" className="VerticalDoorLock" image="lock_rect.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1">
+    <sprite name="door_lock" idx="16" className="VerticalDoorLock" image="door_lock.png" width="24" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="24" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true">
       <properties>
         <type typeof="Int" name="range" value="50"/>
       </properties>
