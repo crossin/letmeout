@@ -143,7 +143,8 @@ package
 			linkedObjectDictionary[21] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 675.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:1 }, null ), onAddCallback );//"thorn_a"
 			linkedObjectDictionary[20] = addSpriteToLayer(null, ThornAuto, ThingsGroup , 659.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"offset", value:2 }, null ), onAddCallback );//"thorn_a"
 			linkedObjectDictionary[13] = addSpriteToLayer(null, Trigger, ThingsGroup , 528.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
-			addSpriteToLayer(null, VerticalDoorLock, ThingsGroup , 832.000, 152.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:24 }, null ), onAddCallback );//"door_lock"
+			linkedObjectDictionary[24] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 788.000, 128.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			linkedObjectDictionary[23] = addSpriteToLayer(null, Lock, ThingsGroup , 783.000, 153.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"lock"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
@@ -175,6 +176,7 @@ package
 			createLink(linkedObjectDictionary[13], linkedObjectDictionary[20], onAddCallback, generateProperties( null ) );
 			createLink(linkedObjectDictionary[13], linkedObjectDictionary[21], onAddCallback, generateProperties( null ) );
 			createLink(linkedObjectDictionary[13], linkedObjectDictionary[22], onAddCallback, generateProperties( null ) );
+			createLink(linkedObjectDictionary[23], linkedObjectDictionary[24], onAddCallback, generateProperties( null ) );
 		}
 
 	}

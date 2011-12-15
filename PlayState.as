@@ -136,12 +136,13 @@ package
 			// check player's action
 			player.markE.visible = false;
 			player.markQ.visible = false;
-			hasActed = carryBox() || pullStone() || openLock();
+			hasActed = carryBox() || pullStone();
 			
 			player.onLadder = false;
 			FlxG.overlap(player, ladder, overLadder);
 			FlxG.overlap(player, items, overItem);
 			FlxG.overlap(player, triggers, overTrigger);
+			FlxG.overlap(player, locks, overLock);
 			FlxG.overlap(player, thorns, beginDeath);
 			
 			//FlxG.collide(level1.hitTilemaps, stones);
@@ -188,33 +189,40 @@ package
 			{
 				(obj as VerticalDoor).init(properties[0].value);
 				groupCollide.add(obj as VerticalDoor);
-				if (obj is VerticalDoorLock) {
-					locks.add(obj as VerticalDoorLock);
-				}
 			}
 			else if (obj is HorizontalPlatform)
 			{
-				(obj as HorizontalPlatform).init(properties[0]. value);
+				(obj as HorizontalPlatform).init(properties[0].value);
 				groupCollide.add(obj as HorizontalPlatform);
 			}
 			else if (obj is Trigger)
 			{
 				triggers.add(obj as Trigger);
 			}
+			else if (obj is Lock)
+			{
+				locks.add(obj as Lock);
+			}
 			else if (obj is Thorn)
 			{
 				thorns.add(obj as Thorn);
-				if (obj is ThornAuto) {
+				if (obj is ThornAuto)
+				{
 					(obj as ThornAuto).init(properties[0].value);
 				}
 			}
 			else if (obj is ObjectLink)
 			{
 				var link:ObjectLink = obj as ObjectLink;
-				var trigger:Trigger = link.fromObject as Trigger;
-				if (trigger)
+				if (link.fromObject is Trigger)
 				{
+					var trigger:Trigger = link.fromObject as Trigger;
 					trigger.targets.push(link.toObject);
+				}
+				else if (link.fromObject is Lock)
+				{
+					var lock:Lock = link.fromObject as Lock;
+					lock.target = link.toObject;
 				}
 			}
 			return obj;
@@ -293,33 +301,6 @@ package
 			return false;
 		}
 		
-		public function openLock():Boolean
-		{
-			if (!player.inAction)
-			{
-				for each (var lock:VerticalDoorLock in locks.members)
-				{
-					var deltaX:Number = FlxU.abs((lock.x + lock.width / 2) - (player.x + player.width / 2));
-					var deltaY:Number = FlxU.abs((lock.y + lock.height / 2) - (player.y + player.height / 2));
-					if ((deltaX <= (player.width + lock.width) / 2 + 5) && (deltaY <= FlxU.abs(player.height - lock.height) / 2 + 5))
-					{
-						if ((player.facing == FlxObject.RIGHT && lock.x > player.x) || (player.facing == FlxObject.LEFT && lock.x < player.x))
-						{
-							player.markQ.visible = true;
-							if (FlxG.keys.justPressed("CONTROL"))
-							{
-								if (lock.open(inventory.getItem())) {
-									inventory.useItem();
-								}
-							}
-							return true;
-						}
-					}
-				}
-			}
-			return false;
-		}
-		
 		public function overItem(Object1:FlxObject, Object2:FlxObject):void
 		{
 			if (!player.inAction && !hasActed)
@@ -344,6 +325,22 @@ package
 					for each (var tar:Object in(Object2 as Trigger).targets)
 					{
 						tar.action();
+					}
+					hasActed = true;
+				}
+			}
+		}
+		
+		public function overLock(Object1:FlxObject, Object2:FlxObject):void
+		{
+			if (!player.inAction && !hasActed)
+			{
+				player.markQ.visible = true;
+				if (FlxG.keys.justPressed("CONTROL"))
+				{
+					if ((Object2 as Lock).open(inventory.getItem()))
+					{
+						inventory.useItem();
 					}
 					hasActed = true;
 				}
