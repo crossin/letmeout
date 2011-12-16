@@ -26,6 +26,7 @@ package
 		protected var triggers:FlxGroup;
 		protected var thorns:FlxGroup;
 		protected var locks:FlxGroup;
+		protected var passwords:FlxGroup;
 		protected var groupCollide:FlxGroup;
 		protected var groupHint:FlxGroup;
 		
@@ -43,6 +44,7 @@ package
 			triggers = new FlxGroup();
 			thorns = new FlxGroup();
 			locks = new FlxGroup();
+			passwords = new FlxGroup();
 			groupCollide = new FlxGroup();
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
@@ -143,6 +145,7 @@ package
 			FlxG.overlap(player, items, overItem);
 			FlxG.overlap(player, triggers, overTrigger);
 			FlxG.overlap(player, locks, overLock);
+			FlxG.overlap(player, passwords, overPassword);
 			FlxG.overlap(player, thorns, beginDeath);
 			
 			//FlxG.collide(level1.hitTilemaps, stones);
@@ -213,21 +216,23 @@ package
 			}
 			else if (obj is Password)
 			{
-				add((obj as Password).num);
-				trace((obj as Password).num.x)
+				(obj as Password).init(properties[0].value);
+				passwords.add(obj as Password);
 			}
 			else if (obj is ObjectLink)
 			{
 				var link:ObjectLink = obj as ObjectLink;
 				if (link.fromObject is Trigger)
 				{
-					var trigger:Trigger = link.fromObject as Trigger;
-					trigger.targets.push(link.toObject);
+					(link.fromObject as Trigger).targets.push(link.toObject);
 				}
 				else if (link.fromObject is Lock)
 				{
-					var lock:Lock = link.fromObject as Lock;
-					lock.target = link.toObject;
+					(link.fromObject as Lock).target = link.toObject;
+				}
+				else if (link.fromObject is Password)
+				{
+					(link.fromObject as Password).target = link.toObject;
 				}
 			}
 			return obj;
@@ -346,6 +351,27 @@ package
 					if ((Object2 as Lock).open(inventory.getItem()))
 					{
 						inventory.useItem();
+					}
+					hasActed = true;
+				}
+			}
+		}
+		
+		public function overPassword(Object1:FlxObject, Object2:FlxObject):void
+		{
+			if (!player.inAction && !hasActed)
+			{
+				player.markE.visible = true;
+				if (FlxG.keys.justPressed("SPACE"))
+				{
+					(Object2 as Password).change();
+					var allCorrect:Boolean = true;
+					for each (var psw:Password in passwords.members)
+					{
+						allCorrect &&= psw.correct;
+					}
+					if (allCorrect) {
+						(Object2 as Password).target.action();
 					}
 					hasActed = true;
 				}

@@ -2,7 +2,7 @@
 <project>
   <version>2.1.4</version>
   <bgColor>0xffeeee</bgColor>
-  <viewPos x="-577" y="-11"/>
+  <viewPos x="-554" y="-261"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="18">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -44,7 +44,12 @@
         <type typeof="Int" name="range" value="50"/>
       </properties>
     </sprite>
-    <sprite name="lock" idx="17" className="Lock" image="lock.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="lock" idx="16" className="Lock" image="lock.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
+    <sprite name="password" idx="17" className="Password" image="password.png" width="16" height="48" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="48" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true">
+      <properties>
+        <type typeof="Int" name="color" value="1"/>
+      </properties>
+    </sprite>
   </spriteEntries>
   <links>
     <link from="4CDAE06C-4DEE-8842-1AF0-60C86C72A82E" to="1F02083C-56EA-A430-67BD-33614F5B4DA6"/>
@@ -258,10 +263,28 @@
         <sprite guid="A3102D9A-0524-7942-58F3-0CFFDE979BA0" x="788" y="128" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="11">
           <properties/>
         </sprite>
-        <sprite guid="48E98BF4-48EB-9204-F408-843D5F7ECFD9" x="783" y="153" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17"/>
+        <sprite guid="48E98BF4-48EB-9204-F408-843D5F7ECFD9" x="783" y="153" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16"/>
+        <sprite guid="C6F2DC2C-8FF5-9F8F-0556-82AC46AAB1F8" x="1264" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties/>
+        </sprite>
+        <sprite guid="7BB0A27B-3A14-45CC-9963-B278D53C2363" x="1296" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="2" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="7D3DE4C5-B8DE-9C54-5FA5-5469FAA6F90C" x="1328" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="3" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="73EE97C4-58EE-8B15-84E5-D5BD4D30C080" x="1360" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="4" idx="0"/>
+          </properties>
+        </sprite>
       </spritelayer>
       <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
-        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="752" y="144" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
+        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="1200" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
     </group>
   </layers>
