@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -145,11 +145,12 @@ package
 			linkedObjectDictionary[13] = addSpriteToLayer(null, Trigger, ThingsGroup , 528.000, 166.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"trigger"
 			linkedObjectDictionary[24] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 788.000, 128.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
 			linkedObjectDictionary[23] = addSpriteToLayer(null, Lock, ThingsGroup , 783.000, 153.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"lock"
+			addSpriteToLayer(null, Password, ThingsGroup , 928.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"password"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, Player, PlayerGroup , 752.000, 144.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
+			addSpriteToLayer(null, Player, PlayerGroup , 896.000, 144.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
 		}
 
 		public function generateObjectLinks(onAddCallback:Function = null):void
