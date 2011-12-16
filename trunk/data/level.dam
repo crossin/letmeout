@@ -2,7 +2,7 @@
 <project>
   <version>2.1.4</version>
   <bgColor>0xffeeee</bgColor>
-  <viewPos x="-577" y="-11"/>
+  <viewPos x="-554" y="114"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="18">
     <sprite name="player" idx="1" className="Player" image="player.png" width="14" height="24" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="14" boundsHeight="24" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
@@ -19,7 +19,7 @@
         <type typeof="Int" name="offset" value="0"/>
       </properties>
     </sprite>
-    <sprite name="door_v" idx="11" className="VerticalDoor" image="door.png" width="12" height="50" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="12" boundsHeight="50" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1">
+    <sprite name="door_v" idx="11" className="VerticalDoor" image="door.png" width="12" height="50" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="12" boundsHeight="50" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true">
       <properties>
         <type typeof="Int" name="range" value="50"/>
       </properties>
@@ -45,7 +45,11 @@
       </properties>
     </sprite>
     <sprite name="lock" idx="16" className="Lock" image="lock.png" width="10" height="10" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="10" boundsHeight="10" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1"/>
-    <sprite name="password" idx="17" className="Password" image="password.png" width="8" height="16" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="8" boundsHeight="16" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1" selected="true"/>
+    <sprite name="password" idx="17" className="Password" image="password.png" width="16" height="48" preview="0" anchorX="0" anchorY="0" boundsX="0" boundsY="0" boundsWidth="16" boundsHeight="48" constructor="" creation="" exports="true" canScale="false" canRotate="false" surfaceObject="false" tileIndex="-1">
+      <properties>
+        <type typeof="Int" name="color" value="1"/>
+      </properties>
+    </sprite>
   </spriteEntries>
   <links>
     <link from="4CDAE06C-4DEE-8842-1AF0-60C86C72A82E" to="1F02083C-56EA-A430-67BD-33614F5B4DA6"/>
@@ -71,6 +75,10 @@
     <link from="D71B6DE6-D016-0C57-1B05-A1FB298A8ECA" to="D4C17B8A-F69B-21B9-DAB4-F60EFC39B1E9"/>
     <link from="D71B6DE6-D016-0C57-1B05-A1FB298A8ECA" to="9533D6FF-847C-4558-F76B-855F5E62854C"/>
     <link from="48E98BF4-48EB-9204-F408-843D5F7ECFD9" to="A3102D9A-0524-7942-58F3-0CFFDE979BA0"/>
+    <link from="73EE97C4-58EE-8B15-84E5-D5BD4D30C080" to="EA9B31AA-4705-B992-B5A1-C981C26A3214"/>
+    <link from="7D3DE4C5-B8DE-9C54-5FA5-5469FAA6F90C" to="EA9B31AA-4705-B992-B5A1-C981C26A3214"/>
+    <link from="7BB0A27B-3A14-45CC-9963-B278D53C2363" to="EA9B31AA-4705-B992-B5A1-C981C26A3214"/>
+    <link from="C6F2DC2C-8FF5-9F8F-0556-82AC46AAB1F8" to="EA9B31AA-4705-B992-B5A1-C981C26A3214"/>
   </links>
   <layers>
     <group name="Level1" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
@@ -145,7 +153,7 @@
         <sprite guid="D10A9F5F-0529-441D-2371-377F7610A60D" x="592" y="528" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
         <sprite guid="A90B94EC-36F6-ED36-57DD-6FCEC5E59557" x="592" y="544" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="4"/>
       </spritelayer>
-      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+      <spritelayer name="Things" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
         <sprite guid="181F43C6-2924-30A0-0223-2079012D2798" x="860" y="306" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="13">
           <properties>
             <dataOverride name="range" typeof="Int" value="-510" idx="0"/>
@@ -260,10 +268,30 @@
           <properties/>
         </sprite>
         <sprite guid="48E98BF4-48EB-9204-F408-843D5F7ECFD9" x="783" y="153" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="16"/>
-        <sprite guid="C6F2DC2C-8FF5-9F8F-0556-82AC46AAB1F8" x="928" y="160" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17"/>
+        <sprite guid="C6F2DC2C-8FF5-9F8F-0556-82AC46AAB1F8" x="1264" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties/>
+        </sprite>
+        <sprite guid="7BB0A27B-3A14-45CC-9963-B278D53C2363" x="1296" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="2" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="7D3DE4C5-B8DE-9C54-5FA5-5469FAA6F90C" x="1328" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="3" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="73EE97C4-58EE-8B15-84E5-D5BD4D30C080" x="1360" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="17">
+          <properties>
+            <dataOverride name="color" typeof="Int" value="4" idx="0"/>
+          </properties>
+        </sprite>
+        <sprite guid="EA9B31AA-4705-B992-B5A1-C981C26A3214" x="1408" y="352" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="11">
+          <properties/>
+        </sprite>
       </spritelayer>
-      <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false" selected="true">
-        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="896" y="144" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
+      <spritelayer name="Player" xScroll="1" yScroll="1" visible="true" locked="false" exports="true" aligned="false" sort="false">
+        <sprite guid="88675A6E-72C2-60B8-5087-CB159D11F0D4" x="1200" y="368" Z="0" angle="0" scaleX="1" scaleY="1" flipped="false" idx="1"/>
       </spritelayer>
     </group>
   </layers>
