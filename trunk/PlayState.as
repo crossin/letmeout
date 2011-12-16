@@ -211,6 +211,11 @@ package
 					(obj as ThornAuto).init(properties[0].value);
 				}
 			}
+			else if (obj is Password)
+			{
+				add((obj as Password).num);
+				trace((obj as Password).num.x)
+			}
 			else if (obj is ObjectLink)
 			{
 				var link:ObjectLink = obj as ObjectLink;
