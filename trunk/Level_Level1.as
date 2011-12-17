@@ -150,11 +150,14 @@ package
 			linkedObjectDictionary[27] = addSpriteToLayer(null, Password, ThingsGroup , 1328.000, 352.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"color", value:3 }, null ), onAddCallback );//"password"
 			linkedObjectDictionary[25] = addSpriteToLayer(null, Password, ThingsGroup , 1360.000, 352.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"color", value:4 }, null ), onAddCallback );//"password"
 			linkedObjectDictionary[26] = addSpriteToLayer(null, VerticalDoor, ThingsGroup , 1408.000, 352.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( { name:"range", value:50 }, null ), onAddCallback );//"door_v"
+			addSpriteToLayer(null, Gun, ThingsGroup , 1216.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"gun"
+			addSpriteToLayer(null, Gun, ThingsGroup , 1328.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"gun"
+			addSpriteToLayer(null, Gun, ThingsGroup , 1440.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"gun"
 		}
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, Player, PlayerGroup , 1200.000, 368.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
+			addSpriteToLayer(null, Player, PlayerGroup , 1136.000, 128.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
 		}
 
 		public function generateObjectLinks(onAddCallback:Function = null):void

@@ -27,6 +27,8 @@ package
 		protected var thorns:FlxGroup;
 		protected var locks:FlxGroup;
 		protected var passwords:FlxGroup;
+		protected var guns:FlxGroup;
+		protected var bullets:FlxGroup;
 		protected var groupCollide:FlxGroup;
 		protected var groupHint:FlxGroup;
 		
@@ -37,6 +39,7 @@ package
 		
 		override public function create():void
 		{
+			groupCollide = new FlxGroup();
 			boxes = new FlxGroup();
 			stones = new FlxGroup();
 			ladder = new FlxGroup();
@@ -45,9 +48,23 @@ package
 			thorns = new FlxGroup();
 			locks = new FlxGroup();
 			passwords = new FlxGroup();
-			groupCollide = new FlxGroup();
+			guns = new FlxGroup();
+			// bullets
+			var s:FlxSprite;
+			bullets = new FlxGroup(8);
+			for (var i:int = 0; i < 8; i++)
+			{
+				s = new FlxSprite();
+				s.makeGraphic(4, 4, 0xff000000);
+				s.exists = false;
+				bullets.add(s);
+			}
+			
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
+			
+			add(bullets);
+			
 			groupHint = new FlxGroup();
 			add(groupHint);
 			groupHint.add(player.markE);
@@ -58,6 +75,7 @@ package
 			isDead = false;
 			
 			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN);
+			FlxG.camera.deadzone = new FlxRect(FlxG.width/3, FlxG.height/4, FlxG.width/3, FlxG.height/2);
 			//camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
 			//FlxG.resetCameras(camera);
 			//camera.follow(player, FlxCamera.STYLE_PLATFORMER);
@@ -141,12 +159,15 @@ package
 			hasActed = carryBox() || pullStone();
 			
 			player.onLadder = false;
+			FlxG.overlap(player, thorns, beginDeath);
 			FlxG.overlap(player, ladder, overLadder);
 			FlxG.overlap(player, items, overItem);
 			FlxG.overlap(player, triggers, overTrigger);
 			FlxG.overlap(player, locks, overLock);
 			FlxG.overlap(player, passwords, overPassword);
-			FlxG.overlap(player, thorns, beginDeath);
+			FlxG.overlap(player, guns, overGun);
+			
+			FlxG.collide(level1.hitTilemaps, bullets, hitBullet);
 			
 			//FlxG.collide(level1.hitTilemaps, stones);
 			//FlxG.overlap(level1.hitTilemaps, player, null,null);
@@ -218,6 +239,11 @@ package
 			{
 				(obj as Password).init(properties[0].value);
 				passwords.add(obj as Password);
+			}
+			else if (obj is Gun)
+			{
+				(obj as Gun).bullets = bullets.members;
+				guns.add(obj as Gun);
 			}
 			else if (obj is ObjectLink)
 			{
@@ -370,10 +396,23 @@ package
 					{
 						allCorrect &&= psw.correct;
 					}
-					if (allCorrect) {
+					if (allCorrect)
+					{
 						(Object2 as Password).target.action();
 					}
 					hasActed = true;
+				}
+			}
+		}
+		
+		public function overGun(Object1:FlxObject, Object2:FlxObject):void
+		{
+			if (!player.inAction && !hasActed)
+			{
+				player.markE.visible = true;
+				if (FlxG.keys.justPressed("SPACE"))
+				{
+					(Object2 as Gun).shoot();
 				}
 			}
 		}
@@ -395,6 +434,11 @@ package
 		{
 			isDead = true;
 			FlxG.fade(0xff1e150f, 1, onFade);
+		}
+		
+		public function hitBullet(Object1:FlxObject, Object2:FlxObject):void
+		{
+			Object2.kill();
 		}
 		
 		private function onFade():void
