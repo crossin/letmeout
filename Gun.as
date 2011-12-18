@@ -34,7 +34,7 @@ package
 			{
 				var b:FlxSprite = bullets[bulletIndex];
 				b.reset(x + (width - b.width) / 2, y);
-				b.velocity.y = -150;
+				b.velocity.y = -100;
 				bulletIndex = (bulletIndex + 1) % bullets.length;
 				cd = 0.8;
 			}
