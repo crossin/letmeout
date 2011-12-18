@@ -17,7 +17,9 @@ package
 		protected var _fps:FlxText;
 		
 		public var player:Player;
+		public var boss:Boss;
 		public var inventory:Inventory;
+		protected var trap:Trap;
 		protected var _elevator:FlxSprite;
 		protected var boxes:FlxGroup;
 		protected var stones:FlxGroup;
@@ -28,7 +30,9 @@ package
 		protected var locks:FlxGroup;
 		protected var passwords:FlxGroup;
 		protected var guns:FlxGroup;
+		protected var balances:FlxGroup;
 		protected var bullets:FlxGroup;
+		protected var bulletsEnemy:FlxGroup;
 		protected var groupCollide:FlxGroup;
 		protected var groupHint:FlxGroup;
 		
@@ -49,6 +53,7 @@ package
 			locks = new FlxGroup();
 			passwords = new FlxGroup();
 			guns = new FlxGroup();
+			balances = new FlxGroup();
 			// bullets
 			var s:FlxSprite;
 			bullets = new FlxGroup(8);
@@ -59,11 +64,20 @@ package
 				s.exists = false;
 				bullets.add(s);
 			}
+			bulletsEnemy = new FlxGroup(8);
+			for (i = 0; i < 8; i++)
+			{
+				s = new FlxSprite();
+				s.makeGraphic(6, 6, 0xffff0000);
+				s.exists = false;
+				bulletsEnemy.add(s);
+			}
 			
 			level1 = new Level_Level1(true, onObjectAddedCallback);
 			groupCollide.add(level1.hitTilemaps);
 			
 			add(bullets);
+			add(bulletsEnemy);
 			
 			groupHint = new FlxGroup();
 			add(groupHint);
@@ -75,7 +89,7 @@ package
 			isDead = false;
 			
 			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN);
-			FlxG.camera.deadzone = new FlxRect(FlxG.width/3, FlxG.height/4, FlxG.width/3, FlxG.height/2);
+			FlxG.camera.deadzone = new FlxRect(FlxG.width / 3, FlxG.height / 4, FlxG.width / 3, FlxG.height / 2);
 			//camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
 			//FlxG.resetCameras(camera);
 			//camera.follow(player, FlxCamera.STYLE_PLATFORMER);
@@ -163,11 +177,16 @@ package
 			FlxG.overlap(player, ladder, overLadder);
 			FlxG.overlap(player, items, overItem);
 			FlxG.overlap(player, triggers, overTrigger);
+			FlxG.overlap(player, trap, overTrap);
 			FlxG.overlap(player, locks, overLock);
 			FlxG.overlap(player, passwords, overPassword);
 			FlxG.overlap(player, guns, overGun);
-			
-			FlxG.collide(level1.hitTilemaps, bullets, hitBullet);
+			FlxG.overlap(player, balances, overBalance);
+			// boss
+			FlxG.collide(level1.hitTilemaps, bullets, collideBullet);
+			FlxG.collide(level1.hitTilemaps, boss, collideBoss);
+			FlxG.overlap(boss, bullets, hitBoss);
+			FlxG.overlap(player, bulletsEnemy, hitPlayer);
 			
 			//FlxG.collide(level1.hitTilemaps, stones);
 			//FlxG.overlap(level1.hitTilemaps, player, null,null);
@@ -186,6 +205,15 @@ package
 			{
 				player = obj as Player;
 				groupCollide.add(player);
+			}
+			else if (obj is Boss)
+			{
+				boss = obj as Boss;
+				boss.bullets = bulletsEnemy.members;
+			}
+			else if (obj is Trap)
+			{
+				trap = obj as Trap;
 			}
 			else if (obj is Box)
 			{
@@ -245,12 +273,25 @@ package
 				(obj as Gun).bullets = bullets.members;
 				guns.add(obj as Gun);
 			}
+			else if (obj is Balance)
+			{
+				balances.add(obj as Balance);
+				add((obj as Balance).contents);
+			}
 			else if (obj is ObjectLink)
 			{
 				var link:ObjectLink = obj as ObjectLink;
 				if (link.fromObject is Trigger)
 				{
 					(link.fromObject as Trigger).targets.push(link.toObject);
+				}
+				else if (link.fromObject is Trap)
+				{
+					(link.fromObject as Trap).targets.push(link.toObject);
+				}
+				else if (link.fromObject is Boss)
+				{
+					(link.fromObject as Boss).targets.push(link.toObject);
 				}
 				else if (link.fromObject is Lock)
 				{
@@ -367,6 +408,18 @@ package
 			}
 		}
 		
+		public function overTrap(Object1:FlxObject, Object2:FlxObject):void
+		{
+			if (!(Object2 as Trap).triggered)
+			{
+				for each (var tar:Object in(Object2 as Trap).targets)
+				{
+					tar.action();
+				}
+				(Object2 as Trap).triggered = true;
+			}
+		}
+		
 		public function overLock(Object1:FlxObject, Object2:FlxObject):void
 		{
 			if (!player.inAction && !hasActed)
@@ -413,6 +466,34 @@ package
 				if (FlxG.keys.justPressed("SPACE"))
 				{
 					(Object2 as Gun).shoot();
+					hasActed = true;
+				}
+			}
+		}
+		
+		public function overBalance(Object1:FlxObject, Object2:FlxObject):void
+		{
+			if (!player.inAction && !hasActed)
+			{
+				// put
+				player.markQ.visible = true;
+				if (FlxG.keys.justPressed("CONTROL"))
+				{
+					if ((Object2 as Balance).addStone(inventory.getItem()))
+					{
+						inventory.useItem();
+					}
+					hasActed = true;
+				}
+				// get
+				if ((Object2 as Balance).index >= 0)
+				{
+					player.markE.visible = true;
+					if (FlxG.keys.justPressed("SPACE"))
+					{
+						(Object2 as Balance).removeStone();
+						hasActed = true;
+					}
 				}
 			}
 		}
@@ -433,15 +514,33 @@ package
 		public function beginDeath(Object1:FlxObject, Object2:FlxObject):void
 		{
 			isDead = true;
-			FlxG.fade(0xff1e150f, 1, onFade);
+			FlxG.fade(0xff1e150f, 1, onDead);
 		}
 		
-		public function hitBullet(Object1:FlxObject, Object2:FlxObject):void
+		public function collideBullet(Object1:FlxObject, Object2:FlxObject):void
 		{
 			Object2.kill();
 		}
 		
-		private function onFade():void
+		public function collideBoss(Object1:FlxObject, Object2:FlxObject):void
+		{
+			Object2.velocity.x = (Object2.touching == FlxObject.RIGHT) ? -100 : 100;
+		}
+		
+		public function hitBoss(Object1:FlxObject, Object2:FlxObject):void
+		{
+			Object1.hurt(1);
+			Object2.kill();
+		}
+		
+		public function hitPlayer(Object1:FlxObject, Object2:FlxObject):void
+		{
+			Object2.kill();
+			isDead = true;
+			FlxG.fade(0xff1e150f, 1, onDead);
+		}
+		
+		private function onDead():void
 		{
 			FlxG.resetState();
 		}
