@@ -8,7 +8,7 @@ package
 	{
 		//Embedded media...
 		[Embed(source="data/mapCSV_Level1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="data/tiles.png")] public var Img_Map1:Class;
+		[Embed(source="../../../workspace/LetMeOut/src/data/tiles.png")] public var Img_Map1:Class;
 
 		//Tilemaps
 		public var layerMap1:FlxTilemap;
@@ -63,14 +63,13 @@ package
 
 		public function addSpritesForLayerItems(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1877.000, 613.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
 			addSpriteToLayer(null, ItemKey, ItemsGroup , 736.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Key"
 			addSpriteToLayer(null, ItemKey, ItemsGroup , 1504.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Key"
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1536.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1520.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1552.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1568.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
-			addSpriteToLayer(null, ItemStone, ItemsGroup , 1584.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Rock"
+			addSpriteToLayer(null, ItemStone1, ItemsGroup , 1520.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone1"
+			addSpriteToLayer(null, ItemStone2, ItemsGroup , 1536.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone2"
+			addSpriteToLayer(null, ItemStone3, ItemsGroup , 1552.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone3"
+			addSpriteToLayer(null, ItemStone4, ItemsGroup , 1568.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone4"
+			addSpriteToLayer(null, ItemStone5, ItemsGroup , 1584.000, 176.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"Stone5"
 		}
 
 		public function addSpritesForLayerLadder(onAddCallback:Function = null):void

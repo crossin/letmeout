@@ -1,11 +1,8 @@
 package {
-	import org.flixel.FlxSprite;
-
 	public class ItemStone extends Item {
-		[Embed(source="data/stone.png")]
-		public static var Img:Class;
-
-		public function ItemStone(X:Number, Y:Number){
+		public var weight:int;
+		
+		public function ItemStone(X:Number, Y:Number, Img:Class){
 			super(X, Y, Img);
 		}
 	}

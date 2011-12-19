@@ -14,11 +14,13 @@ package
 		public var stones:Array;
 		public var contents:FlxGroup;
 		public var index:int;
+		public var weight:int;
 		
 		public function Balance(X:Number, Y:Number)
 		{
 			super(X, Y, ImgBal);
 			index = -1;
+			weight = 0;
 			contents = new FlxGroup(5);
 			var s:FlxSprite;
 			for (var i:int = 0; i < 5; i++)
@@ -42,7 +44,7 @@ package
 		
 		public function addStone(item:Class):Boolean
 		{
-			if (item == ItemStone)
+			if (item == ItemStone1 || item == ItemStone2 || item == ItemStone3 || item == ItemStone4 || item == ItemStone5)
 			{
 				index++;
 				stones[index] = getQualifiedClassName(item);
