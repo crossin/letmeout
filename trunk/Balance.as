@@ -4,17 +4,21 @@ package
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxG;
 	import flash.utils.getQualifiedClassName;
+	import flash.utils.getDefinitionByName;
 	
 	public class Balance extends FlxSprite
 	{
 		[Embed(source="data/balance.png")]
 		private var ImgBal:Class;
 		
-		//public var targets:Array;
+		public var target:Object;
 		public var stones:Array;
 		public var contents:FlxGroup;
 		public var index:int;
 		public var weight:int;
+		public var yUp:Number;
+		public var yDown:Number;
+		public var isUp:Boolean;
 		
 		public function Balance(X:Number, Y:Number)
 		{
@@ -31,15 +35,27 @@ package
 				contents.add(s);
 			}
 			stones = new Array();
+			isUp = true;
+			yUp = Y;
+			yDown = Y + 20;
 		}
 		
 		override public function update():void
 		{
+			velocity.y = 0;
+			if (isUp && y > yUp)
+			{
+				velocity.y = -50;
+			}
+			if (!isUp && y < yDown)
+			{
+				velocity.y = 50;
+			}
+			super.update();
 			for each (var stone:FlxSprite in contents.members)
 			{
 				stone.y = y - stone.height;
 			}
-			super.update();
 		}
 		
 		public function addStone(item:Class):Boolean
@@ -51,6 +67,7 @@ package
 				var stone:FlxSprite = contents.members[index] as FlxSprite;
 				stone.loadGraphic((item.Img));
 				stone.visible = true;
+				weight += item.weight;
 				return true;
 			}
 			return false;
@@ -60,6 +77,8 @@ package
 		{
 			(FlxG.state as PlayState).inventory.addItem(stones[index]);
 			(contents.members[index] as FlxSprite).visible = false;
+			weight -= getDefinitionByName(stones[index]).weight;
+			trace(weight)
 			index--;
 		}
 	}

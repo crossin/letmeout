@@ -301,6 +301,10 @@ package
 				{
 					(link.fromObject as Password).target = link.toObject;
 				}
+				else if (link.fromObject is Balance)
+				{
+					(link.fromObject as Balance).target = link.toObject;
+				}
 			}
 			return obj;
 		}
@@ -482,6 +486,7 @@ package
 					if ((Object2 as Balance).addStone(inventory.getItem()))
 					{
 						inventory.useItem();
+						checkBalance();
 					}
 					hasActed = true;
 				}
@@ -492,6 +497,7 @@ package
 					if (FlxG.keys.justPressed("SPACE"))
 					{
 						(Object2 as Balance).removeStone();
+						checkBalance();
 						hasActed = true;
 					}
 				}
@@ -543,6 +549,36 @@ package
 		private function onDead():void
 		{
 			FlxG.resetState();
+		}
+		
+		private function checkBalance():void
+		{
+			var b1:Balance = balances.members[0];
+			var b2:Balance = balances.members[1];
+			var w1:int = b1.weight;
+			var w2:int = b2.weight;
+			if (w1 > w2)
+			{
+				b1.isUp = false;
+				balances.members[1].isUp = true;
+			}
+			else if (w1 < w2)
+			{
+				b1.isUp = true;
+				b2.isUp = false;
+			}
+			else if (w1 == 0)
+			{
+				b1.isUp = true;
+				b2.isUp = true;
+			}
+			else
+			{
+				b1.isUp = false;
+				b2.isUp = false;
+			}
+			b1.target.isUp = b1.isUp;
+			b2.target.isUp = b2.isUp;
 		}
 	}
 }
