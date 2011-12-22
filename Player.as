@@ -25,6 +25,7 @@ package
 		public var inAction:Boolean;
 		
 		public var status:int;
+		public var speed:int;
 		
 		public var markE:FlxSprite;
 		public var markQ:FlxSprite;
@@ -32,17 +33,22 @@ package
 		public function Player(X:Number, Y:Number)
 		{
 			super(X, Y);
-			loadGraphic(ImgPlayer, true, true, 14, 24);
-			maxVelocity.x = 100; //walking speed
+			loadGraphic(ImgPlayer, true, true, 24, 32);
+			speed = 100;
+			maxVelocity.x = speed; //walking speed
 			maxVelocity.y = 200;
 			acceleration.y = 400; //gravity
-			drag.x = maxVelocity.x * 4; //deceleration (sliding to a stop)
+			drag.x = maxVelocity.x * 8; //deceleration (sliding to a stop)
 			
 			//tweak the bounding box for better feel
-			width = 8;
-			height = 20;
-			offset.x = 3;
-			offset.y = 3;
+			width = width * 0.6;
+			height = height * 0.8;
+			offset.x = width * 0.2;
+			offset.y = height * 0.1;
+			//width = 8;
+			//height = 20;
+			//offset.x = 3;
+			//offset.y = 3;
 			
 			status = STAND;
 			
@@ -51,10 +57,10 @@ package
 			inAction = false;
 			
 			addAnimation("idle", [0], 0, false);
-			addAnimation("walk", [1, 2, 3, 0], 10, true);
+			addAnimation("walk", [1, 2, 3, 4], 5, true);
 			addAnimation("walk_back", [3, 2, 1, 0], 10, true);
-			addAnimation("flail", [1, 2, 3, 0], 18, true);
-			addAnimation("jump", [4], 0, false);
+			addAnimation("flail", [6], 0, true);
+			addAnimation("jump", [5], 0, false);
 			
 			markE = new FlxSprite(0, 0, ImgMarkE);
 			markE.active = false;
@@ -100,7 +106,7 @@ package
 			// control on different status
 			if (status == STAND)
 			{
-				maxVelocity.x = 100;
+				maxVelocity.x = speed;
 				acceleration.y = 400;
 				//Jump controls
 				if (FlxG.keys.justPressed("UP") && !stone)
@@ -118,7 +124,7 @@ package
 			
 			if (status == JUMP)
 			{
-				maxVelocity.x = 100;
+				maxVelocity.x = speed;
 				acceleration.y = 400;
 				if (velocity.y < 0)
 					play("jump");
