@@ -45,6 +45,8 @@ package
 			boundsMinY = 0;
 			boundsMaxX = 1920;
 			boundsMaxY = 640;
+			boundsMin = new FlxPoint(0, 0);
+			boundsMax = new FlxPoint(1920, 640);
 			bgColor = 0xffffeeee;
 		}
 
@@ -171,7 +173,7 @@ package
 
 		public function addSpritesForLayerPlayer(onAddCallback:Function = null):void
 		{
-			addSpriteToLayer(null, Player, PlayerGroup , 1552.000, 160.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
+			addSpriteToLayer(null, Player, PlayerGroup , 944.000, 592.000, 0.000, 1, 1, false, 1.000, 1.000, generateProperties( null ), onAddCallback );//"player"
 		}
 
 		public function generateObjectLinks(onAddCallback:Function = null):void

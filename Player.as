@@ -61,6 +61,11 @@ package
 			addAnimation("walk_back", [3, 2, 1, 0], 10, true);
 			addAnimation("flail", [6], 0, true);
 			addAnimation("jump", [5], 0, false);
+			addAnimation("carry", [7], 0, false);
+			addAnimation("carry_walk", [8, 9, 10, 11], 5, true);
+			addAnimation("carry_jump", [12], 0, false);
+			addAnimation("pull", [13], 0, false);
+			addAnimation("pull_walk", [13, 14], 3, true);
 			
 			markE = new FlxSprite(0, 0, ImgMarkE);
 			markE.active = false;
@@ -77,7 +82,8 @@ package
 			acceleration.x = 0;
 			if (FlxG.keys.LEFT)
 			{
-				facing = LEFT;
+				if (!stone)
+					facing = LEFT;
 				
 				if (stone)
 				{
@@ -91,7 +97,9 @@ package
 			}
 			if (FlxG.keys.RIGHT)
 			{
-				facing = RIGHT;
+				if (!stone)
+					facing = RIGHT;
+					
 				if (stone)
 				{
 					velocity.x = 20;
@@ -115,11 +123,23 @@ package
 					play("jump");
 				} //Animations
 				else if (velocity.x != 0)
-					play("walk");
-				//else if (velocity.x < 0)
-				//play("walk_back");
+				{
+					if (box)
+						play("carry_walk");
+					else if (stone)
+						play("pull_walk");
+					else
+						play("walk");
+				}
 				else
-					play("idle");
+				{
+					if (box)
+						play("carry");
+					else if (stone)
+						play("pull");
+					else
+						play("idle");
+				}
 			}
 			
 			if (status == JUMP)
@@ -127,7 +147,12 @@ package
 				maxVelocity.x = speed;
 				acceleration.y = 400;
 				if (velocity.y < 0)
-					play("jump");
+				{
+					if (box)
+						play("carry_jump");
+					else
+						play("jump");
+				}
 				else
 					play("flail");
 			}
