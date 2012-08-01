@@ -99,6 +99,8 @@ package
 			//FlxG.camera.bgColor = 0xff233e58
 			//FlxG.follow(player, 10);
 			//FlxG.followBounds(0, 0, 640, 640);
+			//FlxG.watch(player.velocity, "x");
+			//FlxG.log("xxx");
 		/*
 		   //Background
 		   FlxState.bgColor = 0xffacbcd7;

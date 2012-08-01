@@ -19,6 +19,8 @@ package
 		public static var boundsMaxX:int;
 		public static var boundsMaxY:int;
 
+		public var boundsMin:FlxPoint;
+		public var boundsMax:FlxPoint;
 		public var bgColor:uint = 0;
 		public var paths:Array = [];	// Array of PathData
 		public var shapes:Array = [];	//Array of ShapeData.
@@ -29,12 +31,12 @@ package
 		// Expects callback function to be callback(newobj:Object,layer:FlxGroup,level:BaseLevel,properties:Array)
 		public function createObjects(onAddCallback:Function = null, parentObject:Object = null):void { }
 
-		public function addTilemap( mapClass:Class, imageClass:Class, x:Number, y:Number, tileWidth:uint, tileHeight:uint, scrollX:Number, scrollY:Number, hits:Boolean, collideIdx:uint, drawIdx:uint, properties:Array, onAddCallback:Function = null ):FlxTilemap
+		public function addTilemap( mapClass:Class, imageClass:Class, xpos:Number, ypos:Number, tileWidth:uint, tileHeight:uint, scrollX:Number, scrollY:Number, hits:Boolean, collideIdx:uint, drawIdx:uint, properties:Array, onAddCallback:Function = null ):FlxTilemap
 		{
 			var map:FlxTilemap = new FlxTilemap;
 			map.loadMap( new mapClass, imageClass, tileWidth, tileHeight, FlxTilemap.OFF, 0, drawIdx, collideIdx);
-			map.x = x;
-			map.y = y;
+			map.x = xpos;
+			map.y = ypos;
 			map.scrollFactor.x = scrollX;
 			map.scrollFactor.y = scrollY;
 			if ( hits )
@@ -45,10 +47,10 @@ package
 			return map;
 		}
 
-		public function addSpriteToLayer(obj:FlxSprite, type:Class, layer:FlxGroup, x:Number, y:Number, angle:Number, scrollX:Number, scrollY:Number, flipped:Boolean = false, scaleX:Number = 1, scaleY:Number = 1, properties:Array = null, onAddCallback:Function = null):FlxSprite
+		public function addSpriteToLayer(obj:FlxSprite, type:Class, layer:FlxGroup, xpos:Number, ypos:Number, angle:Number, scrollX:Number, scrollY:Number, flipped:Boolean = false, scaleX:Number = 1, scaleY:Number = 1, properties:Array = null, onAddCallback:Function = null):FlxSprite
 		{
 			if( obj == null )
-				obj = new type(x, y);
+				obj = new type(xpos, ypos);
 			obj.x += obj.offset.x;
 			obj.y += obj.offset.y;
 			obj.angle = angle;
@@ -147,5 +149,7 @@ package
 			shapes = null;
 		}
 
+		// List of null classes allows you to spawn levels dynamically from code using ClassReference.
+		private static var level_Level1:Level_Level1;
 	}
 }
